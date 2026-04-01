@@ -69,7 +69,7 @@
           "addressCountry": "US"
         },
         "areaServed": ["Houston", "Energy Corridor", "West Houston", "Westchase", "Memorial"],
-        "hasMap": "https://www.google.com/maps/place/Persis+Biryani+Indian+grill/@29.7591235,-95.6260007,17z",
+        "hasMap": "https://maps.google.com/?cid=12049858236395387957",
         "url": "https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston",
         "sameAs": ["https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston"],
         "menu": "https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston",
@@ -563,9 +563,24 @@
         gap: 10px;
       }
 
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .footer-left {
+        flex: 1 1 260px;
+      }
+
       .footer-hours {
-        margin-top: 10px;
+        flex: 0 1 auto;
+        margin-top: 0;
         line-height: 1.55;
+        text-align: right;
+        font-size: 0.78rem;
       }
 
       .footer-hours strong {
@@ -661,7 +676,7 @@
             <a class="btn btn-primary" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">Order Online</a>
             <a
               class="btn btn-secondary"
-              href="https://www.google.com/maps/place/Persis+Biryani+Indian+grill/@29.7591235,-95.6260007,17z"
+              href="https://www.google.com/maps/dir/?api=1&destination=29.759124,-95.626001&travelmode=driving"
               target="_blank"
               rel="noopener noreferrer"
               >Get Directions</a
@@ -778,31 +793,31 @@
 
     <footer>
       <div class="container">
-        <p class="footer-brand flex items-center gap-2">
-          <img
-            class="footer-logo"
-            src="assets/images/brand/persis-logo.webp"
-            alt="Persis Biryani Indian Grill logo"
-            loading="lazy"
-            decoding="async"
-            width="96"
-            height="48"
-          />
-          <span> 1460 Eldridge Pkwy Ste 130, Houston, TX 77077</span>
-        </p>
-        <div class="footer-links">
-          <a href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">Order Online</a>
-          <a href="https://www.google.com/maps/place/Persis+Biryani+Indian+grill/@29.7591235,-95.6260007,17z" target="_blank" rel="noopener noreferrer">Open in Google Maps</a>
+        <div class="footer-inner">
+          <div class="footer-left">
+            <p class="footer-brand flex items-center gap-2">
+              <img
+                class="footer-logo"
+                src="assets/images/brand/persis-logo.webp"
+                alt="Persis Biryani Indian Grill logo"
+                loading="lazy"
+                decoding="async"
+                width="96"
+                height="48"
+              />
+            </p>
+            <p> 1460 Eldridge Pkwy Ste 130, Houston, TX 77077</p>
+            <p style="margin-top: 16px">© <span id="year"></span> Persis Biryani Indian Grill. All rights reserved.</p>
+          </div>
+          <div class="footer-hours">
+            <p><strong>Hours</strong></p>
+            <p>Monday: Closed</p>
+            <p>Tuesday–Thursday: 11:00 AM–2:30 PM, 5:00 PM–9:00 PM</p>
+            <p>Friday: 11:00 AM–3:00 PM, 5:00 PM–9:30 PM</p>
+            <p>Saturday: 11:00 AM–3:00 PM, 5:00 PM–9:30 PM</p>
+            <p>Sunday: 11:00 AM–3:00 PM, 5:00 PM–9:00 PM</p>
+          </div>
         </div>
-        <div class="footer-hours">
-          <p><strong>Hours</strong></p>
-          <p>Monday: Closed</p>
-          <p>Tuesday–Thursday: 11:00 AM–2:30 PM, 5:00 PM–9:00 PM</p>
-          <p>Friday: 11:00 AM–3:00 PM, 5:00 PM–9:30 PM</p>
-          <p>Saturday: 11:00 AM–3:00 PM, 5:00 PM–9:30 PM</p>
-          <p>Sunday: 11:00 AM–3:00 PM, 5:00 PM–9:00 PM</p>
-        </div>
-        <p style="margin-top: 10px">© <span id="year"></span> Persis Biryani Indian Grill. All rights reserved.</p>
       </div>
     </footer>
 
