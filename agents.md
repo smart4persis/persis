@@ -6,6 +6,7 @@ Maintain a single-page, SEO-optimized restaurant website for local discovery and
 ## Business Details
 - Name: Persis Biryani Indian Grill
 - Address: 1460 Eldridge Pkwy Ste 130, Houston, TX 77077
+- Website: https://www.persisbiryanihouston.com
 - Primary ordering URL: https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston
 - Google Maps URL (current): https://www.google.com/maps/place/Persis+Biryani+Indian+grill/@29.7591235,-95.6260007,17z
 
@@ -18,7 +19,7 @@ Maintain a single-page, SEO-optimized restaurant website for local discovery and
 - Fast loading and clean UI
 
 ## SEO Requirements (Active)
-- Optimize for local intent: "Restaurant near me"
+- Optimize for local intent: "Restaurant near me", "Restaurant", "Indian", "Biryani", "Butter Chicken", "Naan", "Tandoori"
 - Houston neighborhood relevance (Energy Corridor, West Houston, Westchase, Memorial)
 - Include Restaurant schema and accurate business hours
 
@@ -57,6 +58,31 @@ Primary page assets are now under:
 - `menu-item-images-lakemary/` contains downloaded menu images from:
 	- https://www.persislakemary.com/menu.php
 	- Includes `manifest.json` mapping source URLs to local files.
+
+## Audit & Fixes (April 5, 2026)
+- Fixed FAQ accordion: restructured from plain `<p>` tags to proper `<button class="faq-btn">` + `<div class="faq-body" hidden>` pattern; wired up event listeners (previously `toggleFaq()` was defined but never called)
+- Added `og:image` and `twitter:image` meta tags pointing to `hero.webp`
+- Added `<link rel="canonical" href="https://www.persisbiryani.com/" />`
+- Added `"telephone": "+1-832-534-3813"` to Restaurant schema
+- Expanded FAQ answers with more detailed copy
+- Assumed canonical domain: `https://www.persisbiryani.com/` — update if actual domain differs
+
+## SEO Improvements (April 5, 2026)
+- Added `<link rel="preload">` for hero image (LCP optimization)
+- Added FAQPage structured data (JSON-LD) for Google rich results
+- Enhanced Restaurant schema: added `image`, `geo`, `description`, `acceptsReservations`, `currenciesAccepted`, `paymentAccepted`, expanded `areaServed` (Katy, Briar Forest)
+- Fixed `og:url` to use canonical domain instead of Clover URL
+- Added 3 more FAQ items: halal, business hours, vegetarian — targets long-tail local queries
+- Added visible hours grid to the location section (not only in footer)
+- Added section label + heading hierarchy to location section for crawl/structure
+- Created `robots.txt` (blocks `src-images/`)
+- Created `sitemap.xml` pointing to canonical homepage
+
+## How to Run Locally
+- **Always use `npx serve .`** — do NOT use any other server
+- `npx serve .` from the project root to start a local server
+- Open `http://localhost:3000` in a browser
+- No build step required — single static HTML file with inline CSS/JS
 
 ## Notes
 - Grubhub menu image extraction for the target URL appears API-auth protected in this environment.
