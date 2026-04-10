@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /src-images/
 
 Sitemap: https://www.persisbiryanihouston.com/sitemap.xml

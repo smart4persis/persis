@@ -19,7 +19,7 @@ Maintain a single-page, SEO-optimized restaurant website for local discovery and
 - Fast loading and clean UI
 
 ## SEO Requirements (Active)
-- Optimize for local intent: "Restaurant near me", "Restaurant", "Indian", "Biryani", "Butter Chicken", "Naan", "Tandoori"
+- Optimize for local intent: "Restaurant near me", "Restaurant", "Indian", "Biryani", "Butter Chicken", "Naan", "Tandoori", "Persis", "Persis Biryani", "Persis Indian", "Persis Indian Grill",  "Persis Biryani Indian Grill"
 - Houston neighborhood relevance (Energy Corridor, West Houston, Westchase, Memorial)
 - Include Restaurant schema and accurate business hours
 
@@ -47,17 +47,16 @@ Primary page assets are now under:
 - `assets/images/badges/`
 
 ### Used in page currently
-- `assets/images/hero/hero.webp`
-- `assets/images/menu/biryani.webp`
-- `assets/images/menu/appetizers.webp`
-- `assets/images/menu/entrees.webp`
+- `assets/images/hero/background.webp`
+- `assets/images/hero/hero.webp` (og:image / twitter meta only)
+- `assets/images/menu/biryanis.webp`
+- `assets/images/menu/image.webp`
+- `assets/images/menu/entrees-table.webp`
 - `assets/images/brand/persis-logo.webp`
-- `assets/images/badges/halal-logo.png`
-
-## Extra Downloaded Image Packs
-- `menu-item-images-lakemary/` contains downloaded menu images from:
-	- https://www.persislakemary.com/menu.php
-	- Includes `manifest.json` mapping source URLs to local files.
+- `assets/images/badges/halal-logo.webp`
+- `assets/images/badges/doordash.webp`
+- `assets/images/badges/ubereats.webp`
+- `assets/images/badges/grubhub.webp`
 
 ## Audit & Fixes (April 5, 2026)
 - Fixed FAQ accordion: restructured from plain `<p>` tags to proper `<button class="faq-btn">` + `<div class="faq-body" hidden>` pattern; wired up event listeners (previously `toggleFaq()` was defined but never called)
@@ -65,7 +64,7 @@ Primary page assets are now under:
 - Added `<link rel="canonical" href="https://www.persisbiryani.com/" />`
 - Added `"telephone": "+1-832-534-3813"` to Restaurant schema
 - Expanded FAQ answers with more detailed copy
-- Assumed canonical domain: `https://www.persisbiryani.com/` — update if actual domain differs
+- Canonical domain: `https://www.persisbiryanihouston.com/`
 
 ## SEO Improvements (April 5, 2026)
 - Added `<link rel="preload">` for hero image (LCP optimization)
@@ -75,7 +74,7 @@ Primary page assets are now under:
 - Added 3 more FAQ items: halal, business hours, vegetarian — targets long-tail local queries
 - Added visible hours grid to the location section (not only in footer)
 - Added section label + heading hierarchy to location section for crawl/structure
-- Created `robots.txt` (blocks `src-images/`)
+- Created `robots.txt`
 - Created `sitemap.xml` pointing to canonical homepage
 
 ## How to Run Locally
@@ -84,6 +83,17 @@ Primary page assets are now under:
 - Open `http://localhost:3000` in a browser
 - No build step required — single static HTML file with inline CSS/JS
 
+## Delivery Partners (April 10, 2026)
+- Added DoorDash, Uber Eats, and Grubhub as delivery partners
+- Links appear in hero section (below CTA) and menu section ("Why Locals Choose Us" card)
+- Official badge images stored in `assets/images/badges/`
+- DoorDash: https://www.doordash.com/store/persis-biryani-indian-grill-houston-42125831/
+- Uber Eats: https://www.ubereats.com/store/persis-biryani-indian-grill-houston-tx/48G73c39VamktUwAq7Hmig
+- Grubhub: https://www.grubhub.com/restaurant/persis-biryani-indian-grill-1460-eldridge-parkway-130-houston/14326704
+- Updated Restaurant schema `sameAs` to include all delivery partner URLs
+- Updated FAQ answer for pickup/delivery to mention all partners
+- Cleaned up all unused images; moved `biryanis.png` from `src-images/` to `assets/images/menu/`
+- `src-images/` folder is now empty
+
 ## Notes
-- Grubhub menu image extraction for the target URL appears API-auth protected in this environment.
 - Keep content wording stable unless explicitly requested; design/layout updates are allowed.

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preload" as="image" href="assets/images/hero/hero.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="assets/images/hero/background.webp" type="image/webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,7 +17,7 @@
     />
     <meta
       name="keywords"
-      content="restaurant near me Houston, Indian restaurant near me, biryani near me Houston, Persis Biryani Indian Grill, Houston Energy Corridor restaurant, Eldridge Parkway restaurant, Hyderabad dum biryani"
+      content="restaurant near me Houston, Indian restaurant near me, biryani near me Houston, butter chicken Houston, naan Houston, tandoori Houston, Persis Biryani Indian Grill, Persis Indian Grill, Persis Indian, Houston Energy Corridor restaurant, Eldridge Parkway restaurant, Hyderabad dum biryani, Indian food delivery Houston, halal restaurant Houston, Indian catering Houston, best biryani Houston"
     />
     <meta name="geo.region" content="US-TX" />
     <meta name="geo.placename" content="Houston" />
@@ -35,6 +35,8 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Persis Biryani Indian Grill" />
     <meta property="og:image" content="https://www.persisbiryanihouston.com/assets/images/hero/hero.webp" />
+    <meta property="og:image:alt" content="Persis Biryani Indian Grill — authentic Indian food near Houston Energy Corridor" />
+    <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
@@ -46,16 +48,19 @@
       content="Looking for a restaurant near me in Houston Energy Corridor? Try Persis Biryani Indian Grill for authentic Indian flavors."
     />
     <link rel="canonical" href="https://www.persisbiryanihouston.com/" />
+    <link rel="icon" type="image/webp" href="assets/images/brand/persis-logo.webp" />
+    <link rel="apple-touch-icon" href="assets/images/brand/persis-logo.webp" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Restaurant",
+        "@id": "https://www.persisbiryanihouston.com/#restaurant",
         "name": "Persis Biryani Indian Grill",
         "telephone": "+1-832-534-3813",
         "image": "https://www.persisbiryanihouston.com/assets/images/hero/hero.webp",
-        "servesCuisine": ["Indian", "Hyderabadi", "South Indian", "North Indian", "Biryani"],
-        "description": "Persis Biryani Indian Grill serves authentic Hyderabad Dum Biryani, Chicken 65, Karampodi Chicken, Ghee Roast, and rich Indian entrees in Houston's Energy Corridor area.",
+        "servesCuisine": ["Indian", "Hyderabadi", "South Indian", "North Indian", "Biryani", "Tandoori", "Butter Chicken", "Kebabs", "Vegetarian"],
+        "description": "Located in Houston's Energy Corridor area, Persis Biryani Indian Grill brings the rich flavors of India to your table. From our signature biryanis to savory curries and sizzling tandoori dishes, every meal is crafted with care and tradition. Join us for a memorable dining experience filled with bold flavors and friendly hospitality.",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "1460 Eldridge Pkwy Ste 130",
@@ -69,49 +74,54 @@
           "latitude": 29.7591235,
           "longitude": -95.6260007
         },
-        "areaServed": ["Houston", "Energy Corridor", "West Houston", "Westchase", "Memorial", "Katy", "Briar Forest"],
+        "areaServed": ["Houston", "Energy Corridor", "West Houston", "Westchase", "Memorial", "Katy", "Briar Forest", "Eldridge", "CityCentre", "Royal Oaks", "Cinco Ranch"],
         "hasMap": "https://maps.google.com/?cid=12049858236395387957",
         "url": "https://www.persisbiryanihouston.com/",
-        "sameAs": ["https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston"],
+        "sameAs": [
+          "https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston",
+          "https://www.doordash.com/store/persis-biryani-indian-grill-houston-42125831/",
+          "https://www.ubereats.com/store/persis-biryani-indian-grill-houston-tx/48G73c39VamktUwAq7Hmig",
+          "https://www.grubhub.com/restaurant/persis-biryani-indian-grill-1460-eldridge-parkway-130-houston/14326704"
+        ],
         "menu": "https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston",
         "acceptsReservations": false,
         "priceRange": "$$",
+        "currenciesAccepted": "USD",
+        "paymentAccepted": "Cash, Credit Card, Debit Card",
+        "potentialAction": {
+          "@type": "OrderAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModePickUp", "http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]
+        },
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Tuesday",
-              "Wednesday",
-              "Thursday"
-            ],
+            "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"],
             "opens": "11:00",
             "closes": "14:30"
           },
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Tuesday",
-              "Wednesday",
-              "Thursday"
-            ],
+            "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"],
             "opens": "17:00",
             "closes": "21:00"
           },
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Friday",
-              "Saturday"
-            ],
+            "dayOfWeek": ["Friday", "Saturday"],
             "opens": "11:00",
             "closes": "15:00"
           },
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Friday",
-              "Saturday"
-            ],
+            "dayOfWeek": ["Friday", "Saturday"],
             "opens": "17:00",
             "closes": "21:30"
           },
@@ -157,7 +167,7 @@
             "name": "What are the most popular dishes?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Our signature Hyderabad Dum Biryani (Chicken & Goat) is a customer favorite, along with Chicken 65, Karampodi Chicken, Ghee Roast, and our rich curry entrees. Every dish is crafted with authentic Hyderabadi spices."
+              "text": "Our signature Hyderabad Dum Biryani (Chicken & Goat) is a customer favorite, along with Butter Chicken, Chicken 65, Karampodi Chicken, Ghee Roast, and our rich curry entrees. We also serve Tandoori specialties and fresh Naan from our traditional clay oven. Every dish is crafted with authentic Hyderabadi spices."
             }
           },
           {
@@ -165,7 +175,7 @@
             "name": "Do you offer pickup and delivery?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, we offer both pickup and delivery through our online ordering system. Visit our Clover ordering page to place your order, choose your preferred time, and we'll have everything ready for you."
+              "text": "Yes, we offer both pickup and delivery. Order directly through our Clover ordering page, or use DoorDash, Uber Eats, or Grubhub for delivery to your door."
             }
           },
           {
@@ -173,12 +183,12 @@
             "name": "Is Persis Biryani Indian Grill halal?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, Persis Biryani Indian Grill is Halal certified. All our meat dishes are prepared using halal ingredients."
+              "text": "Yes, Persis Biryani Indian Grill is Halal certified. All our meat dishes are prepared using halal ingredients sourced from trusted suppliers."
             }
           },
           {
             "@type": "Question",
-            "name": "What are Persis Biryani Indian Grill's business hours?",
+            "name": "What are your business hours?",
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "We are closed on Mondays. Tuesday through Thursday: 11 AM–2:30 PM and 5–9 PM. Friday and Saturday: 11 AM–3 PM and 5–9:30 PM. Sunday: 11 AM–3 PM and 5–9 PM."
@@ -189,7 +199,7 @@
             "name": "Does Persis Biryani have vegetarian options?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, we have an extensive vegetarian menu including veg appetizers, veg entrees, paneer dishes, dal, rice specialties, and a variety of breads from our tandoor."
+              "text": "Yes, we have an extensive vegetarian menu including veg appetizers, veg entrees, paneer dishes, dal, rice specialties, and fresh Naan and Tandoori breads from our traditional tandoor."
             }
           }
         ]
@@ -346,7 +356,7 @@
       .hero-bg {
         position: absolute;
         inset: 0;
-        background-image: url("assets/images/hero/hero.webp");
+        background-image: url("assets/images/hero/background.webp");
         background-size: cover;
         background-position: center 30%;
         transform: scale(1.04);
@@ -408,7 +418,7 @@
       .hero-desc {
         margin-top: 20px;
         max-width: 52ch;
-        color: rgba(245,237,224,0.72);
+        color: rgba(245,237,224,0.92);
         font-size: 1.05rem;
         line-height: 1.65;
       }
@@ -541,7 +551,7 @@
 
       /* ── Sections ── */
       .section {
-        padding: 96px 0;
+        padding: 48px 0;
         position: relative;
       }
 
@@ -634,9 +644,9 @@
 
       .card:hover .card-img::after { opacity: 0.5; }
 
-      .dish-1 { background-image: url("assets/images/menu/biryani.webp"); }
-      .dish-2 { background-image: url("assets/images/menu/appetizers.webp"); }
-      .dish-3 { background-image: url("assets/images/menu/entrees.webp"); }
+      .dish-1 { background-image: url("assets/images/menu/biryanis.webp"); }
+      .dish-2 { background-image: url("assets/images/menu/image.webp"); }
+      .dish-3 { background-image: url("assets/images/menu/entrees-table.webp"); }
 
       .card-body { padding: 22px 24px 26px; }
 
@@ -738,15 +748,15 @@
       .hours-grid {
         margin-top: 32px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 8px;
       }
 
       .hour-item {
         background: var(--surface);
         border: 1px solid rgba(212,153,58,0.1);
         border-radius: var(--radius-sm);
-        padding: 14px 16px;
+        padding: 10px 12px;
         transition: border-color var(--transition), background var(--transition);
       }
 
@@ -770,6 +780,65 @@
         font-size: 0.83rem;
         color: var(--muted);
         line-height: 1.55;
+      }
+
+      /* ── Delivery Partners ── */
+      .delivery-partners {
+        margin-top: 40px;
+        text-align: center;
+      }
+
+      .hero-delivery {
+        margin-top: 20px;
+        text-align: left;
+      }
+
+      .hero-delivery .delivery-links {
+        justify-content: flex-start;
+      }
+
+      .delivery-label {
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--subtle);
+        margin-bottom: 14px;
+      }
+
+      .delivery-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .delivery-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 999px;
+        border: 1.5px solid rgba(245,237,224,0.25);
+        background: rgba(255,255,255,0.05);
+        color: var(--text);
+        font-size: 0.88rem;
+        font-weight: 600;
+        backdrop-filter: blur(8px);
+        transition: all var(--transition);
+      }
+
+      .delivery-link:hover {
+        background: rgba(255,255,255,0.09);
+        border-color: rgba(245,237,224,0.45);
+        transform: translateY(-1px);
+      }
+
+      .delivery-link img {
+        flex-shrink: 0;
+        border-radius: 6px;
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
       }
 
       /* ── FAQ Accordion ── */
@@ -1070,7 +1139,7 @@
           />
         </a>
         <nav class="nav" aria-label="Primary">
-          <a href="#highlights" class="hide-xs">Highlights</a>
+          <a href="#highlights">Highlights</a>
           <a href="#menu" class="hide-xs">Menu</a>
           <a href="#location" class="hide-xs">Hours &amp; Location</a>
           <a class="btn-order" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">Order Online</a>
@@ -1082,26 +1151,43 @@
 
       <!-- ── Hero ── -->
       <section class="hero">
-        <div class="hero-bg" id="heroBg"></div>
+        <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
           <div class="container">
             <p class="hero-eyebrow">Houston Energy Corridor · Est. in Houston, TX</p>
             <h1>Authentic <em>Indian</em><br>Flavors in Houston</h1>
-            <p class="hero-desc">Savor signature Hyderabad Dum Biryani, sizzling appetizers, and rich entrees crafted with authentic spices. Serving Energy Corridor, West Houston, Westchase &amp; Memorial.</p>
+            <p class="hero-desc">Savor signature Hyderabad Dum Biryani, Butter Chicken, sizzling appetizers, fresh Naan, Tandoori specialties, and rich entrees crafted with authentic spices. Serving Energy Corridor, West Houston, Westchase &amp; Memorial.</p>
             <div class="hero-cta">
               <a class="btn btn-primary" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                 Order Online
               </a>
-              <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=29.759124,-95.626001&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">
+              <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=1460+Eldridge+Pkwy+Ste+130+Houston+TX+77077&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 Get Directions
               </a>
             </div>
+            <div class="delivery-partners hero-delivery">
+              <span class="delivery-label">Also available on</span>
+              <div class="delivery-links">
+                <a href="https://www.doordash.com/store/persis-biryani-indian-grill-houston-42125831/" target="_blank" rel="noopener noreferrer" class="delivery-link">
+                  <img src="assets/images/badges/doordash.webp" alt="DoorDash" width="24" height="24" loading="lazy" decoding="async" />
+                  DoorDash
+                </a>
+                <a href="https://www.ubereats.com/store/persis-biryani-indian-grill-houston-tx/48G73c39VamktUwAq7Hmig" target="_blank" rel="noopener noreferrer" class="delivery-link">
+                  <img src="assets/images/badges/ubereats.webp" alt="Uber Eats" width="24" height="24" loading="lazy" decoding="async" />
+                  Uber Eats
+                </a>
+                <a href="https://www.grubhub.com/restaurant/persis-biryani-indian-grill-1460-eldridge-parkway-130-houston/14326704" target="_blank" rel="noopener noreferrer" class="delivery-link">
+                  <img src="assets/images/badges/grubhub.webp" alt="Grubhub" width="24" height="24" loading="lazy" decoding="async" />
+                  Grubhub
+                </a>
+              </div>
+            </div>
             <div class="hero-meta">
               <div class="hero-badge" aria-label="Halal certified">
-                <img src="assets/images/badges/halal-logo.png" alt="Halal certified" loading="lazy" decoding="async" width="44" height="44" />
+                <img src="assets/images/badges/halal-logo.webp" alt="Halal certified" loading="lazy" decoding="async" width="44" height="44" />
                 <span>Halal Certified</span>
               </div>
               <div class="hero-pills">
@@ -1163,12 +1249,14 @@
             <article class="inset-card reveal reveal-delay-1">
               <h3>Menu Categories</h3>
               <ul class="list">
-                <li>Hyderabad Dum Biryani (Chicken &amp; Goat)</li>
+                <li>Hyderabad Dum Biryani's (Chicken &amp; Goat)</li>
                 <li>Non-Veg Appetizers</li>
                 <li>Veg Appetizers</li>
                 <li>Non-Veg Entrees</li>
                 <li>Veg Entrees</li>
-                <li>Tandoor, Breads, Desserts &amp; Drinks</li>
+                <li>Tandoori Specialties</li>
+                <li>Naan, Breads </li>
+                <li>Desserts &amp; Drinks</li>
               </ul>
             </article>
             <article class="inset-card reveal reveal-delay-2">
@@ -1179,8 +1267,30 @@
                 <li>Convenient location in the Houston Energy Corridor</li>
                 <li>Easy online ordering — pickup or delivery</li>
               </ul>
+              <div class="delivery-partners" style="margin-top:16px;text-align:left">
+                <div class="delivery-links" style="justify-content:flex-start;gap:8px">
+                  <a href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer" class="delivery-link" style="padding:8px 14px;font-size:0.8rem">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    Order Takeout
+                  </a>
+                  <a href="https://www.doordash.com/store/persis-biryani-indian-grill-houston-42125831/" target="_blank" rel="noopener noreferrer" class="delivery-link" style="padding:8px 14px;font-size:0.8rem">
+                    <img src="assets/images/badges/doordash.webp" alt="DoorDash" width="20" height="20" loading="lazy" decoding="async" />
+                    DoorDash
+                  </a>
+                  <a href="https://www.ubereats.com/store/persis-biryani-indian-grill-houston-tx/48G73c39VamktUwAq7Hmig" target="_blank" rel="noopener noreferrer" class="delivery-link" style="padding:8px 14px;font-size:0.8rem">
+                    <img src="assets/images/badges/ubereats.webp" alt="Uber Eats" width="20" height="20" loading="lazy" decoding="async" />
+                    Uber Eats
+                  </a>
+                  <a href="https://www.grubhub.com/restaurant/persis-biryani-indian-grill-1460-eldridge-parkway-130-houston/14326704" target="_blank" rel="noopener noreferrer" class="delivery-link" style="padding:8px 14px;font-size:0.8rem">
+                    <img src="assets/images/badges/grubhub.webp" alt="Grubhub" width="20" height="20" loading="lazy" decoding="async" />
+                    Grubhub
+                  </a>
+                </div>
+              </div>
             </article>
           </div>
+
+
         </div>
       </section>
 
@@ -1194,7 +1304,9 @@
 
           <div class="hours-grid reveal reveal-delay-2">
             <div class="hour-item closed"><div class="hour-day">Monday</div><div class="hour-time">Closed</div></div>
-            <div class="hour-item"><div class="hour-day">Tue – Thu</div><div class="hour-time">11 AM–2:30 PM<br>5–9 PM</div></div>
+            <div class="hour-item"><div class="hour-day">Tuesday</div><div class="hour-time">11 AM–2:30 PM<br>5–9 PM</div></div>
+            <div class="hour-item"><div class="hour-day">Wednesday</div><div class="hour-time">11 AM–2:30 PM<br>5–9 PM</div></div>
+            <div class="hour-item"><div class="hour-day">Thursday</div><div class="hour-time">11 AM–2:30 PM<br>5–9 PM</div></div>
             <div class="hour-item"><div class="hour-day">Friday</div><div class="hour-time">11 AM–3 PM<br>5–9:30 PM</div></div>
             <div class="hour-item"><div class="hour-day">Saturday</div><div class="hour-time">11 AM–3 PM<br>5–9:30 PM</div></div>
             <div class="hour-item"><div class="hour-day">Sunday</div><div class="hour-time">11 AM–3 PM<br>5–9 PM</div></div>
@@ -1213,7 +1325,7 @@
             <article class="faq-item">
               <button class="faq-btn" aria-expanded="false">Which areas do you serve near Houston?</button>
               <div class="faq-body" hidden>
-                <p>Guests visit us from Energy Corridor, West Houston, Westchase, Memorial, and nearby neighborhoods. If you're in the Houston, TX 77077 area, we deliver to most local addresses and welcome dine-in guests daily.</p>
+                <p>Guests visit us from Energy Corridor, West Houston, Westchase, Memorial, Briar Forest, Katy, Cypress, Eldridge, CityCentre, Royal Oaks, Cinco Ranch, and nearby neighborhoods. If you're in the Houston, TX 77077 area, we deliver to most local addresses and welcome dine-in guests daily.</p>
               </div>
             </article>
             <article class="faq-item">
@@ -1225,13 +1337,13 @@
             <article class="faq-item">
               <button class="faq-btn" aria-expanded="false">What are the most popular dishes?</button>
               <div class="faq-body" hidden>
-                <p>Our signature Hyderabad Dum Biryani (Chicken &amp; Goat) is a customer favorite, along with Chicken 65, Karampodi Chicken, Ghee Roast, and our rich curry entrees. Every dish is crafted with authentic Hyderabadi spices.</p>
+                <p>Our signature Hyderabad Dum Biryani (Chicken &amp; Goat) is a customer favorite, along with Butter Chicken, Chicken 65, Karampodi Chicken, Ghee Roast, and our rich curry entrees. We also serve Tandoori specialties and fresh Naan from our traditional clay oven. Every dish is crafted with authentic Hyderabadi spices.</p>
               </div>
             </article>
             <article class="faq-item">
               <button class="faq-btn" aria-expanded="false">Do you offer pickup and delivery?</button>
               <div class="faq-body" hidden>
-                <p>Yes, we offer both pickup and delivery through our online ordering system. Visit our Clover ordering page to place your order, choose your preferred time, and we'll have everything ready for you.</p>
+                <p>Yes, we offer both pickup and delivery. Order directly through our Clover ordering page, or use DoorDash, Uber Eats, or Grubhub for delivery to your door.</p>
               </div>
             </article>
             <article class="faq-item">
@@ -1249,7 +1361,7 @@
             <article class="faq-item">
               <button class="faq-btn" aria-expanded="false">Does Persis Biryani have vegetarian options?</button>
               <div class="faq-body" hidden>
-                <p>Yes, we have an extensive vegetarian menu including veg appetizers, veg entrees, paneer dishes, dal, rice specialties, and a variety of breads from our tandoor.</p>
+                <p>Yes, we have an extensive vegetarian menu including veg appetizers, veg entrees, paneer dishes, dal, rice specialties, and fresh Naan and Tandoori breads from our traditional tandoor.</p>
               </div>
             </article>
           </div>
@@ -1279,7 +1391,7 @@
             </p>
             <div class="footer-links">
               <a class="footer-link" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">Order Online</a>
-              <a class="footer-link" href="https://www.google.com/maps/dir/?api=1&destination=29.759124,-95.626001&travelmode=driving" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              <a class="footer-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=1460+Eldridge+Pkwy+Ste+130+Houston+TX+77077&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">Get Directions</a>
             </div>
           </div>
           <div>
