@@ -3,6 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QVFC2QX7MQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QVFC2QX7MQ');
+    </script>
     <link rel="preload" as="image" href="assets/images/hero/background.webp" type="image/webp" fetchpriority="high" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1188,6 +1196,10 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 Get Directions
               </a>
+              <a class="btn btn-ghost" href="tel:+18325343813">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Call Us
+              </a>
             </div>
             <div class="delivery-partners hero-delivery">
               <span class="delivery-label">Also available on</span>
@@ -1492,8 +1504,42 @@
           if (!expanded) {
             btn.setAttribute("aria-expanded", "true");
             body.hidden = false;
+            gtag("event", "faq_open", { faq_question: btn.textContent.trim() });
           }
         });
+      });
+
+      // GA4 event tracking for outbound links and key actions
+      document.addEventListener("click", (e) => {
+        const link = e.target.closest("a[href]");
+        if (!link) return;
+        const href = link.href;
+        const text = link.textContent.trim();
+
+        // Order Online (Clover)
+        if (href.includes("clover.com")) {
+          gtag("event", "order_online", { link_text: text, link_url: href });
+        }
+        // DoorDash
+        else if (href.includes("doordash.com")) {
+          gtag("event", "doordash_click", { link_text: text, link_url: href });
+        }
+        // Uber Eats
+        else if (href.includes("ubereats.com")) {
+          gtag("event", "ubereats_click", { link_text: text, link_url: href });
+        }
+        // Grubhub
+        else if (href.includes("grubhub.com")) {
+          gtag("event", "grubhub_click", { link_text: text, link_url: href });
+        }
+        // Get Directions
+        else if (href.includes("maps/dir") || href.includes("maps.google.com")) {
+          gtag("event", "get_directions", { link_url: href });
+        }
+        // Phone call
+        else if (href.startsWith("tel:")) {
+          gtag("event", "phone_call", { phone_number: href.replace("tel:", "") });
+        }
       });
     </script>
   </body>
