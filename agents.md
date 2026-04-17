@@ -117,5 +117,19 @@ Primary page assets are now under:
   - Updated schema description to reference full Houston coverage
   - Updated FAQ "areas served" answer (schema + visible) to list River Oaks, Tanglewood, Bellaire, Sugar Land, The Woodlands, etc.
 
+## Google Places / Local SEO Fixes (April 16, 2026)
+- Added `LocalBusiness` as secondary `@type` alongside `Restaurant` for stronger local search signal
+- Added `AggregateRating` schema: 4.9 stars, 50 ratings — enables star display in search results
+- Added `logo` field to Restaurant schema pointing to brand logo
+- Cleaned `servesCuisine`: removed dish names (`Butter Chicken`, `Kebabs`, `Lamb Chops`) — kept only cuisine types
+- Fixed FAQ schema/visible text mismatch: added "Cypress" to schema FAQ answer for areas served (was already in visible text)
+- Replaced misleading `⭐⭐⭐⭐⭐ Authentic Hyderabadi` hero pill with `⭐ 4.9 Stars on Google` (backed by real data)
+- Added "best Indian restaurants in Houston" naturally in Highlights section subtitle
+- Wrapped footer NAP in semantic `<address>` tag for local signal
+- Removed competitor brand names (`Aga's`, `Peacock`, `Palle Ruchi`, `Biryani grill`) from meta keywords — gray-hat practice, Google ignores meta keywords anyway
+- Updated `sitemap.xml`: `lastmod` to `2026-04-16`, `changefreq` from `hourly` to `weekly`
+- **TODO (needs user input):** Add Yelp, Instagram, Facebook URLs to `sameAs` in schema
+- **TODO (off-site):** GBP category optimization, photo uploads, weekly posts, review growth strategy, NAP consistency audit
+
 ## Notes
 - Keep content wording stable unless explicitly requested; design/layout updates are allowed.
