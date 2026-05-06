@@ -1284,11 +1284,13 @@
       }
 
       .theme-toggle .icon-sun { display: none; }
-      .theme-toggle .icon-moon { display: block; }
-      [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
-      [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+      .theme-toggle .icon-moon { display: none; }
+      .theme-toggle .icon-auto { display: none; }
+      [data-theme-mode="light"] .theme-toggle .icon-sun { display: block; }
+      [data-theme-mode="dark"] .theme-toggle .icon-moon { display: block; }
+      [data-theme-mode="auto"] .theme-toggle .icon-auto { display: block; }
     </style>
-    <script>if(localStorage.getItem("theme")!=="light")document.documentElement.setAttribute("data-theme","dark");</script>
+    <script>(function(){var m=localStorage.getItem("theme")||"auto";function isDark(){var h=new Date().getHours();return h>=19||h<6;}if(m==="dark"||( m==="auto"&&isDark())){document.documentElement.setAttribute("data-theme","dark");}document.documentElement.setAttribute("data-theme-mode",m);})();</script>
 
   </head>
   <body>
@@ -1325,9 +1327,10 @@
         <div class="hero-bg" style="background-image:url('assets/images/hero/slide-4.webp')" aria-hidden="true"></div>
         <div class="hero-bg" style="background-image:url('assets/images/hero/slide-5.webp')" aria-hidden="true"></div>
         <div class="hero-overlay"></div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme mode">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 0 20" fill="currentColor"/><polyline points="12 6 12 12 16 14"/></svg>
         </button>
         <div class="hero-content">
           <div class="container">
@@ -1607,21 +1610,29 @@
     </footer>
 
     <script>
-      // Theme toggle
+      // Theme toggle (light → dark → auto)
       (function() {
         const toggle = document.getElementById("themeToggle");
-        const stored = localStorage.getItem("theme");
-        if (stored !== "light") document.documentElement.setAttribute("data-theme", "dark");
-        toggle.addEventListener("click", () => {
-          const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-          if (isDark) {
-            document.documentElement.removeAttribute("data-theme");
-            localStorage.setItem("theme", "light");
-          } else {
+        const modes = ["light", "dark", "auto"];
+        function isDarkByTime() { const h = new Date().getHours(); return h >= 19 || h < 6; }
+        function applyMode(mode) {
+          localStorage.setItem("theme", mode);
+          document.documentElement.setAttribute("data-theme-mode", mode);
+          if (mode === "dark" || (mode === "auto" && isDarkByTime())) {
             document.documentElement.setAttribute("data-theme", "dark");
-            localStorage.setItem("theme", "dark");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
           }
+        }
+        toggle.addEventListener("click", () => {
+          const current = localStorage.getItem("theme") || "auto";
+          const next = modes[(modes.indexOf(current) + 1) % modes.length];
+          applyMode(next);
         });
+        // Re-evaluate auto mode every minute
+        setInterval(() => {
+          if (localStorage.getItem("theme") === "auto") applyMode("auto");
+        }, 60000);
       })();
 
       // Year
