@@ -379,7 +379,6 @@
       }
 
       .topbar.scrolled {
-        background: var(--topbar-scrolled-bg);
         backdrop-filter: blur(20px) saturate(1.4);
         -webkit-backdrop-filter: blur(20px) saturate(1.4);
         box-shadow: var(--topbar-shadow);
@@ -471,21 +470,27 @@
         min-height: 100svh;
         display: flex;
         align-items: center;
-        overflow: hidden;
       }
 
       .hero-bg {
-        position: absolute;
+        position: fixed;
         inset: 0;
-        background-image: url("assets/images/hero/background.webp");
         background-size: cover;
         background-position: center 30%;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+        z-index: 0;
+      }
+
+      .hero-bg.active {
+        opacity: 1;
       }
 
       .hero-overlay {
-        position: absolute;
+        position: fixed;
         inset: 0;
         background: var(--overlay-gradient), var(--overlay-side);
+        z-index: 0;
       }
 
       .hero-content {
@@ -668,6 +673,7 @@
       .section {
         padding: 48px 0;
         position: relative;
+        z-index: 1;
       }
 
       .section + .section::before {
@@ -1026,6 +1032,8 @@
         border-top: 1px solid var(--card-border);
         padding: 64px 0 40px;
         margin-top: 0;
+        position: relative;
+        z-index: 1;
       }
 
       .footer-inner {
@@ -1280,7 +1288,7 @@
       [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
       [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
     </style>
-    <script>if(localStorage.getItem("theme")==="dark")document.documentElement.setAttribute("data-theme","dark");</script>
+    <script>if(localStorage.getItem("theme")!=="light")document.documentElement.setAttribute("data-theme","dark");</script>
 
   </head>
   <body>
@@ -1311,7 +1319,11 @@
 
       <!-- ── Hero ── -->
       <section class="hero">
-        <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+        <div class="hero-bg active" style="background-image:url('assets/images/hero/slide-1.webp')" aria-hidden="true"></div>
+        <div class="hero-bg" style="background-image:url('assets/images/hero/slide-2.webp')" aria-hidden="true"></div>
+        <div class="hero-bg" style="background-image:url('assets/images/hero/slide-3.webp')" aria-hidden="true"></div>
+        <div class="hero-bg" style="background-image:url('assets/images/hero/slide-4.webp')" aria-hidden="true"></div>
+        <div class="hero-bg" style="background-image:url('assets/images/hero/slide-5.webp')" aria-hidden="true"></div>
         <div class="hero-overlay"></div>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -1599,7 +1611,7 @@
       (function() {
         const toggle = document.getElementById("themeToggle");
         const stored = localStorage.getItem("theme");
-        if (stored === "dark") document.documentElement.setAttribute("data-theme", "dark");
+        if (stored !== "light") document.documentElement.setAttribute("data-theme", "dark");
         toggle.addEventListener("click", () => {
           const isDark = document.documentElement.getAttribute("data-theme") === "dark";
           if (isDark) {
@@ -1621,9 +1633,16 @@
       window.addEventListener("scroll", onScroll, { passive: true });
       onScroll();
 
-      // Hero bg zoom
-      const heroBg = document.getElementById("heroBg");
-      if (heroBg) requestAnimationFrame(() => heroBg.classList.add("loaded"));
+      // Hero bg slideshow
+      const heroSlides = document.querySelectorAll(".hero-bg");
+      let currentSlide = 0;
+      if (heroSlides.length > 1) {
+        setInterval(() => {
+          heroSlides[currentSlide].classList.remove("active");
+          currentSlide = (currentSlide + 1) % heroSlides.length;
+          heroSlides[currentSlide].classList.add("active");
+        }, 4000);
+      }
 
       // Scroll reveal — re-triggers every time elements enter the viewport
       const revealEls = document.querySelectorAll(".reveal");
