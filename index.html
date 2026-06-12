@@ -96,6 +96,7 @@
         "sameAs": [
           "https://www.facebook.com/persisbiryaniindiangrillhouston/",
           "https://www.instagram.com/persisbiryani1",
+          "https://order.online/store/-42125831?delivery=true",
           "https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston",
           "https://www.doordash.com/store/persis-biryani-indian-grill-houston-42125831/",
           "https://www.ubereats.com/store/persis-biryani-indian-grill-houston-tx/48G73c39VamktUwAq7Hmig",
@@ -110,7 +111,7 @@
           "@type": "OrderAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston",
+            "urlTemplate": "https://order.online/store/-42125831?delivery=true",
             "actionPlatform": [
               "http://schema.org/DesktopWebPlatform",
               "http://schema.org/MobileWebPlatform"
@@ -193,7 +194,7 @@
             "name": "Do you offer pickup and delivery?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, we offer both pickup and delivery. Order directly through our Clover ordering page, or use DoorDash, Uber Eats, or Grubhub for delivery to your door."
+              "text": "Yes, we offer both pickup and delivery. Order takeout directly through our Clover ordering page, or order delivery through DoorDash, Uber Eats, or Grubhub. Free delivery is available with orders of $35 or more."
             }
           },
           {
@@ -384,6 +385,30 @@
         box-shadow: var(--topbar-shadow);
       }
 
+      .top-offer {
+        background: linear-gradient(135deg, var(--accent), var(--accent-light));
+        color: var(--btn-text);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        line-height: 1.2;
+        text-align: center;
+        text-transform: uppercase;
+        padding: 9px 16px;
+        box-shadow: var(--btn-shadow);
+      }
+
+      .top-offer a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .top-offer svg {
+        flex-shrink: 0;
+      }
+
       .topbar-inner {
         height: 76px;
         display: flex;
@@ -449,7 +474,6 @@
         font-size: 0.8rem;
         font-weight: 700;
         letter-spacing: 0.06em;
-        text-transform: uppercase;
         padding: 9px 18px;
         border-radius: 999px;
         box-shadow: var(--btn-shadow);
@@ -458,10 +482,24 @@
         flex-shrink: 0;
       }
 
+      .btn-order-secondary {
+        background: var(--surface);
+        border: 1px solid var(--ghost-border);
+        color: var(--text) !important;
+        box-shadow: none;
+        margin-left: 0.5em;
+      }
+
       .btn-order:hover {
         box-shadow: var(--btn-shadow-hover);
         transform: translateY(-1px);
         filter: brightness(1.05);
+      }
+
+      .btn-order-secondary:hover {
+        background: var(--surface-2);
+        border-color: var(--ghost-hover-border);
+        box-shadow: none;
       }
 
       /* ── Hero ── */
@@ -497,7 +535,7 @@
         position: relative;
         z-index: 2;
         width: 100%;
-        padding: 100px 0 72px;
+        padding: 88px 0 72px;
       }
 
       .hero-eyebrow {
@@ -520,17 +558,16 @@
         background: var(--accent);
       }
 
-      h1 {
+      h2 {
         font-family: var(--font-heading);
         font-size: clamp(2.6rem, 8vw, 5.2rem);
         font-weight: 600;
         line-height: 1.05;
         letter-spacing: -0.01em;
         color: var(--text);
-        max-width: 14ch;
       }
 
-      h1 em {
+      h2 em {
         font-style: italic;
         color: var(--accent);
       }
@@ -548,7 +585,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        align-items: center;
+        align-items: flex-start;
       }
 
       .btn {
@@ -568,6 +605,20 @@
         padding: 14px 28px;
         font-size: 0.95rem;
         box-shadow: var(--btn-shadow-lg);
+      }
+
+      .hero-cta-with-note {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .delivery-offer {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--accent);
+        white-space: nowrap;
       }
 
       .btn-primary:hover {
@@ -650,19 +701,24 @@
         flex-direction: column;
         align-items: center;
         gap: 6px;
-        opacity: 0.4;
+        opacity: 0.82;
         z-index: 3;
         animation: scrollBounce 2s ease-in-out infinite;
       }
 
       .hero-scroll-hint span {
-        font-size: 0.65rem;
+        font-size: 0.7rem;
+        font-weight: 800;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: var(--text);
+        color: var(--accent);
+        text-shadow: 0 1px 10px var(--badge-bg);
       }
 
-      .hero-scroll-hint svg { color: var(--text); }
+      .hero-scroll-hint svg {
+        color: var(--accent);
+        filter: drop-shadow(0 1px 6px var(--badge-bg));
+      }
 
       @keyframes scrollBounce {
         0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -715,7 +771,7 @@
         letter-spacing: -0.01em;
       }
 
-      h2 em { font-style: italic; color: var(--accent-light); }
+      h2 em { font-style: italic;  }
 
       .section-sub {
         margin-top: 12px;
@@ -923,11 +979,14 @@
       }
 
       .delivery-label {
-        font-size: 0.82rem;
+        display: inline-block;
+        font-size: 0.84rem;
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--subtle);
+        letter-spacing: 0.14em;
+        color: var(--accent);
         margin-bottom: 14px;
+        text-shadow: 0 1px 10px var(--badge-bg);
       }
 
       .delivery-links {
@@ -1063,6 +1122,9 @@
       }
 
       .footer-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
         font-size: 0.78rem;
         font-weight: 600;
         letter-spacing: 0.06em;
@@ -1072,6 +1134,10 @@
         border: 1px solid var(--card-border);
         border-radius: 999px;
         transition: color var(--transition), border-color var(--transition);
+      }
+
+      .footer-link svg {
+        flex-shrink: 0;
       }
 
       .footer-link:hover {
@@ -1122,30 +1188,61 @@
       }
 
       /* ── Float CTA (mobile) ── */
+      .float-cta-group {
+        display: flex;
+        gap: 8px;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(-50%) translateY(8px);
+        z-index: 90;
+        transition: opacity var(--transition), transform var(--transition);
+      }
+
+      .float-cta-group.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
+      }
+
       .float-cta {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 6px;
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 90;
         background: linear-gradient(135deg, var(--accent), var(--accent-light));
-        color: var(--btn-text);
-        font-size: 0.88rem;
+        border: 1px solid transparent;
+        color: var(--btn-text) !important;
+        font-size: 0.8rem;
         font-weight: 700;
         letter-spacing: 0.06em;
-        text-transform: uppercase;
-        padding: 14px 32px;
+        padding: 9px 18px;
         border-radius: 999px;
-        box-shadow: var(--float-shadow);
+        box-shadow: var(--btn-shadow);
         white-space: nowrap;
-        transition: opacity var(--transition), transform var(--transition);
+        transition: box-shadow var(--transition), transform var(--transition), filter var(--transition), background var(--transition), border-color var(--transition);
       }
 
-      .float-cta:hover { transform: translateX(-50%) translateY(-2px); }
+      .float-cta-secondary {
+        background: var(--surface);
+        border-color: var(--ghost-border);
+        color: var(--text) !important;
+        box-shadow: none;
+      }
+
+      .float-cta:hover {
+        box-shadow: var(--btn-shadow-hover);
+        transform: translateY(-1px);
+        filter: brightness(1.05);
+      }
+
+      .float-cta-secondary:hover {
+        background: var(--surface-2);
+        border-color: var(--ghost-hover-border);
+        box-shadow: none;
+      }
 
       /* ── Animations ── */
       .reveal {
@@ -1179,19 +1276,12 @@
       }
 
       @media (max-width: 760px) {
-        .topbar-inner { height: 66px; }
+        .topbar-inner {
+          height: 66px;
+          justify-content: center;
+        }
         .brand-logo { width: 110px; }
-        .nav { gap: 0; }
-        .nav a:not(.btn-order) {
-          font-size: 0.66rem;
-          letter-spacing: 0.05em;
-          padding: 5px 6px;
-        }
-        .btn-order {
-          font-size: 0.7rem;
-          padding: 8px 13px;
-          letter-spacing: 0.04em;
-        }
+        .nav { display: none; }
 
         .section { padding: 64px 0; }
 
@@ -1220,8 +1310,11 @@
       }
 
       @media (max-width: 480px) {
-        /* Hide middle nav links on very small phones, keep Order button */
-        .nav .hide-xs { display: none; }
+        .top-offer {
+          font-size: 0.68rem;
+          letter-spacing: 0.04em;
+          padding: 8px 10px;
+        }
 
         .hero-meta { flex-direction: column; align-items: flex-start; }
         .hero-pill { font-size: 0.68rem; }
@@ -1234,7 +1327,8 @@
 
         .inset-card { padding: 24px; }
 
-        .float-cta { font-size: 0.82rem; padding: 13px 28px; bottom: 16px; }
+        .float-cta-group { bottom: 16px; }
+        .float-cta { font-size: 0.7rem; padding: 8px 11px; letter-spacing: 0.04em; }
       }
 
       @media (max-width: 360px) {
@@ -1247,14 +1341,14 @@
         .cards { grid-template-columns: repeat(4, 1fr); }
         .footer-inner { grid-template-columns: 1.2fr 0.8fr; gap: 64px; }
         iframe { height: 440px; }
-        /* Hide float CTA on desktop — order button is in nav */
-        .float-cta { display: none; }
+        /* Hide float CTA on desktop — order buttons are in nav */
+        .float-cta-group { display: none; }
       }
 
       /* ── Theme Toggle ── */
       .theme-toggle {
         position: absolute;
-        top: 90px;
+        top: 108px;
         right: 24px;
         z-index: 10;
         display: inline-flex;
@@ -1289,6 +1383,13 @@
       [data-theme-mode="light"] .theme-toggle .icon-sun { display: block; }
       [data-theme-mode="dark"] .theme-toggle .icon-moon { display: block; }
       [data-theme-mode="auto"] .theme-toggle .icon-auto { display: block; }
+
+      @media (max-width: 760px) {
+        .theme-toggle {
+          top: 85px;
+          right: 16px;
+        }
+      }
     </style>
     <script>(function(){var m=localStorage.getItem("theme")||"auto";function isDark(){var h=new Date().getHours();return h>=19||h<6;}if(m==="dark"||( m==="auto"&&isDark())){document.documentElement.setAttribute("data-theme","dark");}document.documentElement.setAttribute("data-theme-mode",m);})();</script>
 
@@ -1296,6 +1397,12 @@
   <body>
     <!-- ── Navigation ── -->
     <header class="topbar" id="topbar">
+      <div class="top-offer">
+        <a href="https://order.online/store/-42125831?delivery=true" target="_blank" rel="noopener noreferrer" aria-label="Order delivery with free delivery on orders of fifty dollars or more">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.6-1.7-1.4-1.9L18 10l-2-4H8l-2 4-2.6 1.1C2.6 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/><path d="M7 17h10"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+          Free delivery with orders over $35
+        </a>
+      </div>
       <div class="topbar-inner container">
         <a class="brand-link" href="#top" aria-label="Persis Biryani Indian Grill home">
           <img
@@ -1309,10 +1416,17 @@
           />
         </a>
         <nav class="nav" aria-label="Primary">
-          <a href="#highlights">Highlights</a>
+          <a href="#highlights" class="hide-xs">Highlights</a>
           <a href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer" class="hide-xs">Menu</a>
           <a href="#location" class="hide-xs">Hours &amp; Location</a>
-          <a class="btn-order" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">Order Online</a>
+          <a class="btn-order" href="https://order.online/store/-42125831?delivery=true" target="_blank" rel="noopener noreferrer">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.6-1.7-1.4-1.9L18 10l-2-4H8l-2 4-2.6 1.1C2.6 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/><path d="M7 17h10"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            Delivery
+          </a>
+          <a class="btn-order btn-order-secondary" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Takeout
+          </a>
         </nav>
       </div>
     </header>
@@ -1335,12 +1449,19 @@
         <div class="hero-content">
           <div class="container">
             <p class="hero-eyebrow">1460 Eldridge Pkwy · Energy Corridor· Houston, TX 77077</p>
-            <h1>Authentic <em>Indian</em><br>Flavors in Houston</h1>
+            <h2>Authentic <em>Indian</em> Flavors in Houston</h2>
             <p class="hero-desc">Smoky chargrilled Tandoori Lamb Chops. Authentic Hyderabadi Dum Biryani. Creamy Butter Chicken. Crispy Chicken 65. Fresh Naan straight from our traditional clay oven. Whether it's your first time trying Indian food or your hundredth visit, every dish is crafted with care and authentic spices.</p>
             <div class="hero-cta">
+              <div class="hero-cta-with-note">
+                <a class="btn btn-primary" href="https://order.online/store/-42125831?delivery=true" target="_blank" rel="noopener noreferrer">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.6-1.7-1.4-1.9L18 10l-2-4H8l-2 4-2.6 1.1C2.6 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/><path d="M7 17h10"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+                  Order Delivery
+                </a>
+                <span class="delivery-offer">Free delivery over $35</span>
+              </div>
               <a class="btn btn-primary" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                Order Online
+                Order Takeout
               </a>
               <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=1460+Eldridge+Pkwy+Ste+130+Houston+TX+77077&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1354,11 +1475,11 @@
             <div class="delivery-partners hero-delivery">
               <span class="delivery-label">Also available on</span>
               <div class="delivery-links">
-                <a href="https://www.doordash.com/store/persis-biryani-indian-grill-houston-42125831/" target="_blank" rel="noopener noreferrer" class="delivery-link">
+                <a href="https://order.online/store/-42125831?delivery=true" target="_blank" rel="noopener noreferrer" class="delivery-link">
                   <img src="assets/images/badges/doordash.webp" alt="DoorDash" width="24" height="24" loading="lazy" decoding="async" />
                   DoorDash
                 </a>
-                <a href="https://www.ubereats.com/store/persis-biryani-indian-grill-houston-tx/48G73c39VamktUwAq7Hmig" target="_blank" rel="noopener noreferrer" class="delivery-link">
+                <a href="https://www.order.store/store/persis-biryani-indian-grill-houston-tx/48G73c39VamktUwAq7Hmig" target="_blank" rel="noopener noreferrer" class="delivery-link">
                   <img src="assets/images/badges/ubereats.webp" alt="Uber Eats" width="24" height="24" loading="lazy" decoding="async" />
                   Uber Eats
                 </a>
@@ -1460,6 +1581,10 @@
               </ul>
               <div class="delivery-partners" style="margin-top:16px;text-align:left">
                 <div class="delivery-links" style="justify-content:flex-start;gap:8px">
+                  <a href="https://order.online/store/-42125831?delivery=true" target="_blank" rel="noopener noreferrer" class="delivery-link" style="padding:8px 14px;font-size:0.8rem">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.6-1.7-1.4-1.9L18 10l-2-4H8l-2 4-2.6 1.1C2.6 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/><path d="M7 17h10"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+                    Order Delivery
+                  </a>
                   <a href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer" class="delivery-link" style="padding:8px 14px;font-size:0.8rem">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
                     Order Takeout
@@ -1534,7 +1659,7 @@
             <article class="faq-item">
               <button class="faq-btn" aria-expanded="false">Do you offer pickup and delivery?</button>
               <div class="faq-body" hidden>
-                <p>Yes, we offer both pickup and delivery. Order directly through our Clover ordering page, or use DoorDash, Uber Eats, or Grubhub for delivery to your door.</p>
+                <p>Yes, we offer both pickup and delivery. Order takeout directly through our Clover ordering page, or order delivery through DoorDash, Uber Eats, or Grubhub. Free delivery is available with orders of $35 or more.</p>
               </div>
             </article>
             <article class="faq-item">
@@ -1567,7 +1692,16 @@
     </main>
 
     <!-- ── Float CTA (mobile) ── -->
-    <a class="float-cta" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer" id="floatCta">Order Online</a>
+    <div class="float-cta-group" id="floatCta">
+      <a class="float-cta" href="https://order.online/store/-42125831?delivery=true" target="_blank" rel="noopener noreferrer">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.6-1.7-1.4-1.9L18 10l-2-4H8l-2 4-2.6 1.1C2.6 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/><path d="M7 17h10"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+        Delivery
+      </a>
+      <a class="float-cta float-cta-secondary" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Takeout
+      </a>
+    </div>
 
     <footer>
       <div class="container">
@@ -1587,7 +1721,11 @@
               1460 Eldridge Pkwy Ste 130<br>Houston, TX 77077
             </address>
             <div class="footer-links">
-              <a class="footer-link" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">Order Online</a>
+              <a class="footer-link" href="https://order.online/store/-42125831?delivery=true" target="_blank" rel="noopener noreferrer">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.6-1.7-1.4-1.9L18 10l-2-4H8l-2 4-2.6 1.1C2.6 11.3 2 12.1 2 13v3c0 .6.4 1 1 1h2"/><path d="M7 17h10"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+                Order Delivery
+              </a>
+              <a class="footer-link" href="https://www.clover.com/online-ordering/persis-biryani-indian-gr-houston" target="_blank" rel="noopener noreferrer">Order Takeout</a>
               <a class="footer-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=1460+Eldridge+Pkwy+Ste+130+Houston+TX+77077&amp;travelmode=driving" target="_blank" rel="noopener noreferrer">Get Directions</a>
             </div>
           </div>
@@ -1665,12 +1803,24 @@
       }, { threshold: 0.12 });
       revealEls.forEach(el => io.observe(el));
 
-      // Float CTA hide on scroll near footer
+      // Float CTA appears after hero order buttons scroll out of view
       const floatCta = document.getElementById("floatCta");
       if (floatCta) {
-        const footerEl = document.querySelector("footer");
-        const ctaObs = new IntersectionObserver(([e]) => floatCta.style.opacity = e.isIntersecting ? "0" : "1", { threshold: 0.1 });
-        ctaObs.observe(footerEl);
+        const heroCta = document.querySelector(".hero-cta");
+        let heroCtaVisible = true;
+        const updateFloatCta = () => {
+          floatCta.classList.toggle("is-visible", !heroCtaVisible);
+        };
+
+        if (heroCta) {
+          const heroCtaObs = new IntersectionObserver(([e]) => {
+            heroCtaVisible = e.isIntersecting;
+            updateFloatCta();
+          }, { threshold: 0.1 });
+          heroCtaObs.observe(heroCta);
+        }
+
+        updateFloatCta();
       }
 
       // FAQ accordion
@@ -1698,9 +1848,13 @@
         const href = link.href;
         const text = link.textContent.trim();
 
-        // Order Online (Clover)
-        if (href.includes("clover.com")) {
-          gtag("event", "order_online", { link_text: text, link_url: href });
+        // Order Delivery
+        if (href.includes("order.online")) {
+          gtag("event", "order_delivery", { link_text: text, link_url: href });
+        }
+        // Order Takeout (Clover)
+        else if (href.includes("clover.com")) {
+          gtag("event", "order_takeout", { link_text: text, link_url: href });
         }
         // DoorDash
         else if (href.includes("doordash.com")) {
