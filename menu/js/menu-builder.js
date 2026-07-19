@@ -385,11 +385,27 @@
     else if (offset) raw = raw.slice(offset);
 
     const display = section.display ?? "compact";
+    const layout = section.layout;
+    if (layout != null && layout !== "one-col" && layout !== "two-col") {
+      throw new Error(
+        `Section "${title}" has invalid layout "${layout}"; use "one-col" or "two-col".`
+      );
+    }
+
+    let itemColumns = section.itemColumns;
+    if (itemColumns != null && itemColumns !== 1 && itemColumns !== 2) {
+      throw new Error(
+        `Section "${title}" has invalid itemColumns "${itemColumns}"; use 1 or 2.`
+      );
+    }
+
     if (display === "compact") {
       return {
         title,
         subtitle: section.subtitle,
         note: section.note,
+        layout,
+        itemColumns,
         groups: buildCompactGroups(raw, title),
       };
     }
@@ -397,6 +413,9 @@
     return {
       title,
       subtitle: section.subtitle,
+      note: section.note,
+      layout,
+      itemColumns,
       items: raw.map(itemFromClover),
     };
   }
@@ -421,7 +440,9 @@
     };
 
     if (menu.pages.length > maxPages) {
-      throw new Error(`Menu has ${menu.pages.length} pages; maximum allowed is ${maxPages}.`);
+      throw new Error(
+        `Menu config has ${menu.pages.length} pages; maximum allowed is ${maxPages}. Continuation pages from overflow are added at render time.`
+      );
     }
 
     return menu;

@@ -143,6 +143,35 @@
       flex-direction: column;
     }
 
+    .page-chrome {
+      flex-shrink: 0;
+    }
+
+    .page-body {
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .continuation-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.16in;
+    }
+
+    #menu-measure-root {
+      position: fixed;
+      left: -10000px;
+      top: 0;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    #menu-measure-root .page {
+      box-shadow: none;
+    }
+
     .page-header {
       display: flex;
       justify-content: center;
@@ -268,6 +297,35 @@
       flex: 1;
       columns: 2;
       column-gap: 0.4in;
+    }
+
+    .sections-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.16in;
+      align-content: start;
+    }
+
+    .section--items-2 {
+      columns: 2;
+      column-gap: 0.4in;
+    }
+
+    .section--items-2 .section-title,
+    .section--items-2 .section-subtitle {
+      column-span: all;
+      break-after: avoid;
+    }
+
+    .section--items-2 .menu-item,
+    .section--items-2 .compact-group,
+    .section--items-2 .biryani-section {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .two-col-grid .section--two-col {
+      columns: unset;
     }
 
     .one-col-grid .section-title {
@@ -719,12 +777,25 @@
     @media screen and (max-width: 900px) {
       .page {
         width: 100%;
-        min-height: auto;
+        height: calc(100vw * 11 / 8.5);
+        max-height: calc(100vw * 11 / 8.5);
+        min-height: calc(100vw * 11 / 8.5);
+        overflow: hidden;
       }
 
       .two-col-grid,
-      .multi-grid {
+      .multi-grid,
+      .one-col-grid {
         grid-template-columns: 1fr;
+      }
+
+      .one-col-grid {
+        columns: 1;
+      }
+
+      .section--items-2,
+      .multi-grid:has(> section:nth-child(3):last-child) > section:nth-child(3) {
+        columns: 1;
       }
 
       .page-border { inset: 12px; }
@@ -769,6 +840,7 @@
   </div>
 
   <script src="./js/menu-builder.js"></script>
+  <script src="./js/menu-paginator.js"></script>
   <script>
     function asset(path) {
       return __MENU_BASE__ + String(path).replace(/^\.\//, "");
@@ -844,14 +916,38 @@
               </div>`;
     }
 
-    function renderSection(section) {
+    function resolvedSectionLayout(section, page) {
+      return section.layout || (page?.type === "one-col" ? "one-col" : "two-col");
+    }
+
+    function resolvedItemColumns(section, page) {
+      if (section.itemColumns != null) return section.itemColumns;
+      const layout = resolvedSectionLayout(section, page);
+      // On stacked pages, section "two-col" means two item columns.
+      if (layout === "two-col" && page?.type === "one-col") return 2;
+      return 1;
+    }
+
+    function sectionClassAttr(section, page) {
+      const layout = resolvedSectionLayout(section, page);
+      const itemColumns = resolvedItemColumns(section, page);
+      const classes = [];
+      if (layout === "two-col" && (page?.type === "two-col" || page?.type === "multi")) {
+        classes.push("section--two-col");
+      }
+      if (itemColumns === 2) classes.push("section--items-2");
+      return classes.length ? ` class="${classes.join(" ")}"` : "";
+    }
+
+    function renderSection(section, page) {
+      const classAttr = sectionClassAttr(section, page);
       const subtitle = section.subtitle
         ? `<p class="section-subtitle">${section.subtitle}</p>`
         : "";
       if (section.groups?.length) {
         const groups = section.groups.map((g) => renderCompactGroup(g, section)).join("");
         return `
-        <section>
+        <section${classAttr}>
           <h2 class="section-title">${section.title}</h2>
           ${subtitle}
           ${groups}
@@ -859,7 +955,7 @@
       }
       const items = (section.items || []).map(renderItem).join("");
       return `
-        <section>
+        <section${classAttr}>
           <h2 class="section-title">${section.title}</h2>
           ${subtitle}
           ${items}
@@ -883,14 +979,45 @@
         })
         .join("");
 
+      const chrome = `
+            ${pageHeader(r.name)}
+            <h2 class="biryani-page-title">${page.title || ""}</h2>
+            ${pageSubtitle}`;
+
       return `
-        <div class="page" data-page="${page.id}">
+        <div class="page" data-page="${page.id}"${page.continuation ? ' data-continuation="true"' : ""}>
           ${pageDecorations()}
           <div class="page-inner">
-            ${pageHeader(r.name)}
-            <h2 class="biryani-page-title">${page.title}</h2>
-            ${pageSubtitle}
-            ${body}
+            <div class="page-chrome">${chrome}</div>
+            <div class="page-body">${body}</div>
+          </div>
+        </div>`;
+    }
+
+    function renderContinuationPage(page, r) {
+      let body;
+      if (page.type === "biryani") {
+        body = (page.sections || [])
+          .map((section) => {
+            const subtitle = section.subtitle
+              ? `<p class="section-subtitle">${section.subtitle}</p>`
+              : "";
+            const categoryHeader = `<h3 class="biryani-category-title">${section.title}</h3>`;
+            const groups = (section.groups || [])
+              .map((g) => renderCompactGroup(g, section))
+              .join("");
+            return categoryHeader + subtitle + groups;
+          })
+          .join("");
+      } else {
+        body = (page.sections || []).map((section) => renderSection(section, page)).join("");
+      }
+      return `
+        <div class="page" data-page="${page.id}" data-continuation="true">
+          ${pageDecorations()}
+          <div class="page-inner">
+            <div class="page-chrome">${pageHeader(r.name)}</div>
+            <div class="page-body sections-stack">${body}</div>
           </div>
         </div>`;
     }
@@ -984,39 +1111,54 @@
     }
 
     function renderOneColPage(page, r) {
-      const cols = page.sections.map(renderSection).join("");
+      const cols = page.sections.map((section) => renderSection(section, page)).join("");
       return `
-        <div class="page" data-page="${page.id}">
+        <div class="page" data-page="${page.id}"${page.continuation ? ' data-continuation="true"' : ""}>
           ${pageDecorations()}
           <div class="page-inner">
-            ${pageHeader(r.name)}
-            <div class="one-col-grid">${cols}</div>
+            <div class="page-chrome">${pageHeader(r.name)}</div>
+            <div class="page-body sections-stack">${cols}</div>
           </div>
         </div>`;
     }
 
     function renderTwoColPage(page, r) {
-      const cols = page.sections.map(renderSection).join("");
+      const cols = page.sections.map((section) => renderSection(section, page)).join("");
       return `
-        <div class="page" data-page="${page.id}">
+        <div class="page" data-page="${page.id}"${page.continuation ? ' data-continuation="true"' : ""}>
           ${pageDecorations()}
           <div class="page-inner">
-            ${pageHeader(r.name)}
-            <div class="two-col-grid">${cols}</div>
+            <div class="page-chrome">${pageHeader(r.name)}</div>
+            <div class="page-body two-col-grid">${cols}</div>
           </div>
         </div>`;
     }
 
     function renderMultiPage(page, r) {
-      const sections = page.sections.map(renderSection).join("");
+      const sections = page.sections.map((section) => renderSection(section, page)).join("");
       return `
-        <div class="page" data-page="${page.id}">
+        <div class="page" data-page="${page.id}"${page.continuation ? ' data-continuation="true"' : ""}>
           ${pageDecorations()}
           <div class="page-inner">
-            ${pageHeader(r.name)}
-            <div class="multi-grid">${sections}</div>
+            <div class="page-chrome">${pageHeader(r.name)}</div>
+            <div class="page-body multi-grid">${sections}</div>
           </div>
         </div>`;
+    }
+
+    function renderContentPage(page, r) {
+      if (page.continuation) return renderContinuationPage(page, r);
+      switch (page.type) {
+        case "biryani":
+          return renderBiryaniPage(page, r);
+        case "one-col":
+          return renderOneColPage(page, r);
+        case "multi":
+          return renderMultiPage(page, r);
+        case "two-col":
+        default:
+          return renderTwoColPage(page, r);
+      }
     }
 
     function renderMenu(data) {
@@ -1029,18 +1171,69 @@
               return renderCover(r);
             case "back":
               return renderBack(r);
-            case "biryani":
-              return renderBiryaniPage(page, r);
-            case "one-col":
-              return renderOneColPage(page, r);
-            case "multi":
-              return renderMultiPage(page, r);
-            case "two-col":
             default:
-              return renderTwoColPage(page, r);
+              return renderContentPage(page, r);
           }
         })
         .join("");
+    }
+
+    let menuConfig = null;
+    let menuData = null;
+    let measureRoot = null;
+    let paginateTimer = null;
+
+    function getMeasureRoot() {
+      if (!measureRoot) {
+        measureRoot = document.createElement("div");
+        measureRoot.id = "menu-measure-root";
+        measureRoot.setAttribute("aria-hidden", "true");
+        document.body.appendChild(measureRoot);
+      }
+      return measureRoot;
+    }
+
+    function syncMeasureRootWidth() {
+      const probe = document.createElement("div");
+      probe.className = "page";
+      probe.style.visibility = "hidden";
+      probe.style.position = "fixed";
+      probe.style.left = "-9999px";
+      probe.style.top = "0";
+      document.body.appendChild(probe);
+      const width = probe.getBoundingClientRect().width;
+      probe.remove();
+      getMeasureRoot().style.width = width ? `${width}px` : "";
+    }
+
+    function measureContentPage(page) {
+      const r = menuData.restaurant;
+      syncMeasureRootWidth();
+      getMeasureRoot().innerHTML = renderContentPage(page, r);
+      const body = getMeasureRoot().querySelector(".page-body");
+      if (!body) return 0;
+      return body.scrollHeight - body.clientHeight;
+    }
+
+    function mountMenu() {
+      if (!menuData) return;
+      // Always paginate from the full Clover-built menu. Overflow can come from
+      // more menu items, visible descriptions, or a narrower/mobile page width.
+      const paginated = paginateMenu(menuData, measureContentPage);
+      const maxPages = menuConfig?.maxPages ?? 11;
+      if (paginated.pages.length > maxPages) {
+        console.warn(
+          `Menu expanded to ${paginated.pages.length} pages (max ${maxPages}).`
+        );
+      }
+      document.getElementById("menu-root").innerHTML = renderMenu(paginated);
+    }
+
+    function schedulePaginate() {
+      clearTimeout(paginateTimer);
+      paginateTimer = setTimeout(() => {
+        requestAnimationFrame(() => mountMenu());
+      }, 80);
     }
 
     const descIconShow = `
@@ -1070,9 +1263,12 @@
     toggleDescriptionsBtn.addEventListener("click", () => {
       descriptionsVisible = !descriptionsVisible;
       updateDescriptionsToggle();
+      schedulePaginate();
     });
 
     printMenuBtn.addEventListener("click", () => window.print());
+
+    window.addEventListener("resize", schedulePaginate);
 
     Promise.all([
       fetch(asset("assets/menu-config.json")).then((res) => {
@@ -1085,8 +1281,9 @@
       }),
     ])
       .then(([config, categories]) => {
-        const data = buildMenu(config, categories);
-        document.getElementById("menu-root").innerHTML = renderMenu(data);
+        menuConfig = config;
+        menuData = buildMenu(config, categories);
+        mountMenu();
       })
       .catch((err) => {
         document.getElementById("menu-root").innerHTML =

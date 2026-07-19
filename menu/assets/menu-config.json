@@ -20,15 +20,15 @@
     { "id": "cover", "type": "cover" },
     {
       "id": "tiffins-chaat",
-      "type": "two-col",
+      "type": "one-col",
       "sections": [
-        { "title": "Tiffins", "category": "South Indian", "display": "standard" },
-        { "title": "Chaat Corner", "category": "Chat Corner" }
+        { "title": "Tiffins", "category": "South Indian", "display": "standard", "layout": "one-col"},
+        { "title": "Chaat Corner", "category": "Chat Corner", "layout": "one-col" }
       ]
     },
     {
       "id": "indo-soups",
-      "type": "two-col",
+      "type": "one-col",
       "sections": [
         { "title": "Indo-Chinese", "category": "Indo Chinese" },
         { "title": "Soups", "category": "Soups" }
@@ -36,10 +36,10 @@
     },
     {
       "id": "appetizers",
-      "type": "two-col",
+      "type": "one-col",
       "sections": [
-        { "title": "Non-Veg Appetizers", "category": "Non-Veg Appetizers", "display": "standard"  },
-        { "title": "Veg Appetizers", "category": "Veg Appetizer", "display": "standard"  }
+        { "title": "Non-Veg Appetizers", "category": "Non-Veg Appetizers", "display": "standard", "layout": "two-col"   },
+        { "title": "Veg Appetizers", "category": "Veg Appetizer", "display": "standard", "layout": "two-col"   }
       ]
     },
     {
@@ -53,7 +53,7 @@
     },
     {
       "id": "tandoor-breads",
-      "type": "two-col",
+      "type": "one-col",
       "sections": [
         { "title": "Tandoori", "category": "Tandoor" },
         { "title": "Breads", "category": "Breads" }
@@ -63,8 +63,8 @@
       "id": "entrees",
       "type": "one-col",
       "sections": [
-        { "title": "Veg Entrees", "category": "Veg Entrees", "display": "standard" },
-        { "title": "Non-Veg Entrees", "category": "Non-Veg Entrees", "display": "standard" }
+        { "title": "Veg Entrees", "category": "Veg Entrees", "display": "standard", "layout": "two-col" },
+        { "title": "Non-Veg Entrees", "category": "Non-Veg Entrees", "display": "standard", "layout": "two-col"  }
       ]
     },
     {

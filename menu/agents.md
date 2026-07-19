@@ -18,3 +18,16 @@
 - Source template: `qr-sign.html` (browser preview)
 
 Sections only reference Clover **category names** — items, prices, and descriptions come entirely from the Clover export. Compact grouping is the default for all sections; set `"display": "standard"` on a section to use a flat item list instead.
+
+### Section layout
+- `"layout": "one-col"` — single column of items (default on stacked pages)
+- `"layout": "two-col"` on a stacked/`one-col` page — items flow in **two columns** within the section (e.g. Veg Entrees)
+- `"layout": "two-col"` on a `two-col` page — section sits in half the page, single-column items
+- Optional `"itemColumns": 1 | 2` overrides the layout default
+- On mobile (≤900px), all item columns collapse to a single column for readability
+
+### Automatic continuation pages
+- On every load (and on resize / description toggle), content pages are measured against the fixed page height
+- When items no longer fit — because Clover added more items, descriptions are shown, or the viewport is narrower — overflow is moved to a new continuation page with the same logo header
+- Cover and back are never split
+- `maxPages` in config applies to configured pages; continuation pages from overflow may push the printed total higher (a console warning is logged)
