@@ -386,9 +386,20 @@
 
     const display = section.display ?? "compact";
     const layout = section.layout;
+    const layoutWithDescription =
+      section.layoutWithDescription || section.typeWithDescription || null;
     if (layout != null && layout !== "one-col" && layout !== "two-col") {
       throw new Error(
         `Section "${title}" has invalid layout "${layout}"; use "one-col" or "two-col".`
+      );
+    }
+    if (
+      layoutWithDescription != null &&
+      layoutWithDescription !== "one-col" &&
+      layoutWithDescription !== "two-col"
+    ) {
+      throw new Error(
+        `Section "${title}" has invalid layoutWithDescription "${layoutWithDescription}".`
       );
     }
 
@@ -405,6 +416,7 @@
         subtitle: section.subtitle,
         note: section.note,
         layout,
+        layoutWithDescription,
         itemColumns,
         groups: buildCompactGroups(raw, title),
       };
@@ -415,6 +427,7 @@
       subtitle: section.subtitle,
       note: section.note,
       layout,
+      layoutWithDescription,
       itemColumns,
       items: raw.map(itemFromClover),
     };
@@ -422,6 +435,17 @@
 
   function resolvePage(page, categories, ignored) {
     if (!page.sections) return page;
+    if (
+      page.typeWithDescription != null &&
+      page.typeWithDescription !== "one-col" &&
+      page.typeWithDescription !== "two-col" &&
+      page.typeWithDescription !== "multi" &&
+      page.typeWithDescription !== "biryani"
+    ) {
+      throw new Error(
+        `Page "${page.id}" has invalid typeWithDescription "${page.typeWithDescription}".`
+      );
+    }
     const sections = sortSectionsVegetarianFirst(page.sections);
     return {
       ...page,

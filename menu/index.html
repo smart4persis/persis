@@ -153,6 +153,10 @@
       overflow: hidden;
     }
 
+    .page-body--fit {
+      transform-origin: top center;
+    }
+
     .continuation-grid {
       display: flex;
       flex-direction: column;
@@ -424,6 +428,10 @@
       break-inside: avoid;
     }
 
+    .biryani-section:not(:has(.biryani-section-title)) {
+      margin-bottom: 11px;
+    }
+
     .biryani-section-title {
       font-family: "Cinzel", serif;
       font-size: 0.78rem;
@@ -459,13 +467,8 @@
     .biryani-item {
       display: flex;
       justify-content: space-between;
-      font-size: 0.65rem;
-    }
-
-    .biryani-item-name {
-      color: var(--cream-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
+      align-items: baseline;
+      gap: 8px;
     }
 
     .biryani-note {
@@ -884,13 +887,23 @@
     }
 
     function renderCompactGroup(g, section) {
+      const note = section.note ? `<p class="biryani-note">${section.note}</p>` : "";
       if (g.variants.length === 1) {
         const v = g.variants[0];
-        return renderItem({
-          name: g.title,
-          price: v.price,
-          description: v.description,
-        });
+        const desc = v.description
+          ? `<p class="item-desc">${v.description}</p>`
+          : "";
+        return `
+              <div class="biryani-section">
+                <div class="biryani-item-block">
+                  <div class="biryani-item">
+                    <span class="item-name">${g.title}</span>
+                    <span class="item-price">${v.price}</span>
+                  </div>
+                  ${desc}
+                </div>
+                ${note}
+              </div>`;
       }
       const items = g.variants
         .map((v) => {
@@ -900,14 +913,13 @@
           return `
         <div class="biryani-item-block">
           <div class="biryani-item">
-            <span class="biryani-item-name">${v.label}</span>
+            <span class="item-name">${v.label}</span>
             <span class="item-price">${v.price}</span>
           </div>
           ${desc}
         </div>`;
         })
         .join("");
-      const note = section.note ? `<p class="biryani-note">${section.note}</p>` : "";
       return `
               <div class="biryani-section">
                 <h4 class="biryani-section-title">${g.title}</h4>
@@ -916,23 +928,60 @@
               </div>`;
     }
 
-    function resolvedSectionLayout(section, page) {
-      return section.layout || (page?.type === "one-col" ? "one-col" : "two-col");
+    function descriptionsAreVisible() {
+      return document.body.classList.contains("show-descriptions");
+    }
+
+    function effectivePageType(page) {
+      if (descriptionsAreVisible() && page.typeWithDescription) {
+        return page.typeWithDescription;
+      }
+      return page.type;
+    }
+
+    function effectiveSectionLayout(section, page) {
+      if (descriptionsAreVisible() && section.layoutWithDescription) {
+        return section.layoutWithDescription;
+      }
+      const pageType = effectivePageType(page);
+      return section.layout || (pageType === "one-col" ? "one-col" : "two-col");
+    }
+
+    function usesMergedOneColFlow(page) {
+      if (descriptionsAreVisible()) return false;
+      if (page.type !== "one-col") return false;
+      const sections = page.sections || [];
+      if (sections.length < 2) return false;
+      return sections.every((section) => section.layout === "two-col");
+    }
+
+    function pageBodyClass(page) {
+      const pageType = effectivePageType(page);
+      const sectionCount = page.sections?.length || 0;
+      if (pageType === "two-col") {
+        return sectionCount > 1 ? "two-col-grid" : "sections-stack";
+      }
+      if (pageType === "multi") return "multi-grid";
+      if (usesMergedOneColFlow(page)) return "one-col-grid";
+      return "sections-stack";
     }
 
     function resolvedItemColumns(section, page) {
       if (section.itemColumns != null) return section.itemColumns;
-      const layout = resolvedSectionLayout(section, page);
+      if (usesMergedOneColFlow(page)) return 1;
+      const pageType = effectivePageType(page);
+      const layout = effectiveSectionLayout(section, page);
       // On stacked pages, section "two-col" means two item columns.
-      if (layout === "two-col" && page?.type === "one-col") return 2;
+      if (layout === "two-col" && pageType === "one-col") return 2;
       return 1;
     }
 
     function sectionClassAttr(section, page) {
-      const layout = resolvedSectionLayout(section, page);
+      const pageType = effectivePageType(page);
+      const layout = effectiveSectionLayout(section, page);
       const itemColumns = resolvedItemColumns(section, page);
       const classes = [];
-      if (layout === "two-col" && (page?.type === "two-col" || page?.type === "multi")) {
+      if (layout === "two-col" && (pageType === "two-col" || pageType === "multi")) {
         classes.push("section--two-col");
       }
       if (itemColumns === 2) classes.push("section--items-2");
@@ -1017,7 +1066,7 @@
           ${pageDecorations()}
           <div class="page-inner">
             <div class="page-chrome">${pageHeader(r.name)}</div>
-            <div class="page-body sections-stack">${body}</div>
+            <div class="page-body ${pageBodyClass(page)}">${body}</div>
           </div>
         </div>`;
     }
@@ -1117,7 +1166,7 @@
           ${pageDecorations()}
           <div class="page-inner">
             <div class="page-chrome">${pageHeader(r.name)}</div>
-            <div class="page-body sections-stack">${cols}</div>
+            <div class="page-body ${pageBodyClass(page)}">${cols}</div>
           </div>
         </div>`;
     }
@@ -1129,7 +1178,7 @@
           ${pageDecorations()}
           <div class="page-inner">
             <div class="page-chrome">${pageHeader(r.name)}</div>
-            <div class="page-body two-col-grid">${cols}</div>
+            <div class="page-body ${pageBodyClass(page)}">${cols}</div>
           </div>
         </div>`;
     }
@@ -1148,7 +1197,7 @@
 
     function renderContentPage(page, r) {
       if (page.continuation) return renderContinuationPage(page, r);
-      switch (page.type) {
+      switch (effectivePageType(page)) {
         case "biryani":
           return renderBiryaniPage(page, r);
         case "one-col":
@@ -1215,11 +1264,38 @@
       return body.scrollHeight - body.clientHeight;
     }
 
+    function fitUnpaginatedPages() {
+      if (!menuConfig) return;
+      const unpaginatedIds = new Set(
+        menuConfig.pages.filter((p) => p.paginate === false).map((p) => p.id)
+      );
+      if (!unpaginatedIds.size) return;
+
+      for (const pageEl of document.querySelectorAll("#menu-root .page")) {
+        if (!unpaginatedIds.has(pageEl.dataset.page)) continue;
+
+        const body = pageEl.querySelector(".page-body");
+        if (!body) continue;
+
+        body.classList.add("page-body--fit");
+        body.style.zoom = "1";
+
+        const available = body.clientHeight;
+        const content = body.scrollHeight;
+        if (!available || content <= available) continue;
+
+        // Uniform scale keeps global font/spacing tokens; only overall size changes.
+        body.style.zoom = String((available / content) * 0.96);
+      }
+    }
+
     function mountMenu() {
       if (!menuData) return;
       // Always paginate from the full Clover-built menu. Overflow can come from
       // more menu items, visible descriptions, or a narrower/mobile page width.
-      const paginated = paginateMenu(menuData, measureContentPage);
+      const paginated = paginateMenu(menuData, measureContentPage, {
+        getEffectivePageType: effectivePageType,
+      });
       const maxPages = menuConfig?.maxPages ?? 11;
       if (paginated.pages.length > maxPages) {
         console.warn(
@@ -1227,6 +1303,7 @@
         );
       }
       document.getElementById("menu-root").innerHTML = renderMenu(paginated);
+      requestAnimationFrame(fitUnpaginatedPages);
     }
 
     function schedulePaginate() {

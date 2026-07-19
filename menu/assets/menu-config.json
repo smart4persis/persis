@@ -21,8 +21,9 @@
     {
       "id": "tiffins-chaat",
       "type": "one-col",
+      "typeWithDescription": "two-col",
       "sections": [
-        { "title": "Tiffins", "category": "South Indian", "display": "standard", "layout": "one-col"},
+        { "title": "Tiffins", "category": "South Indian", "display": "standard", "layout": "one-col" },
         { "title": "Chaat Corner", "category": "Chat Corner", "layout": "one-col" }
       ]
     },
@@ -37,14 +38,16 @@
     {
       "id": "appetizers",
       "type": "one-col",
+      "typeWithDescription": "two-col",
       "sections": [
-        { "title": "Non-Veg Appetizers", "category": "Non-Veg Appetizers", "display": "standard", "layout": "two-col"   },
-        { "title": "Veg Appetizers", "category": "Veg Appetizer", "display": "standard", "layout": "two-col"   }
+        { "title": "Non-Veg Appetizers", "category": "Non-Veg Appetizers", "display": "standard", "layout": "two-col", "layoutWithDescription": "one-col" },
+        { "title": "Veg Appetizers", "category": "Veg Appetizer", "display": "standard", "layout": "two-col", "layoutWithDescription": "one-col" }
       ]
     },
     {
       "id": "biryani",
       "type": "biryani",
+      "typeWithDescription": "two-col",
       "title": "Biryanis",
       "sections": [
         { "title": "Biryanis", "category": "Biryani" },
@@ -62,14 +65,16 @@
     {
       "id": "entrees",
       "type": "one-col",
+      "typeWithDescription": "two-col",
       "sections": [
-        { "title": "Veg Entrees", "category": "Veg Entrees", "display": "standard", "layout": "two-col" },
-        { "title": "Non-Veg Entrees", "category": "Non-Veg Entrees", "display": "standard", "layout": "two-col"  }
+        { "title": "Veg Entrees", "category": "Veg Entrees", "display": "standard", "layout": "two-col", "layoutWithDescription": "one-col" },
+        { "title": "Non-Veg Entrees", "category": "Non-Veg Entrees", "display": "standard", "layout": "two-col", "layoutWithDescription": "one-col" }
       ]
     },
     {
       "id": "lunch",
       "type": "biryani",
+      "typeWithDescription": "one-col",
       "title": "Lunch Combos",
       "subtitle": "Weekdays Only · 11:30 AM – 2:30 PM",
       "sections": [
@@ -80,6 +85,7 @@
     {
       "id": "desserts-drinks",
       "type": "multi",
+      "paginate": false,
       "sections": [
         { "title": "Desserts", "category": "Deserts" },
         { "title": "Ice Cream", "category": "Ice Cream" },

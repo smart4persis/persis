@@ -20,8 +20,10 @@
 Sections only reference Clover **category names** — items, prices, and descriptions come entirely from the Clover export. Compact grouping is the default for all sections; set `"display": "standard"` on a section to use a flat item list instead.
 
 ### Section layout
+- Page `"type"` sets the default layout; optional `"typeWithDescription"` overrides it while descriptions are visible (e.g. `"one-col"` normally, `"two-col"` when descriptions are on)
+- Section `"layoutWithDescription"` overrides section `"layout"` while descriptions are visible (legacy alias: section `"typeWithDescription"`)
 - `"layout": "one-col"` — single column of items (default on stacked pages)
-- `"layout": "two-col"` on a stacked/`one-col` page — items flow in **two columns** within the section (e.g. Veg Entrees)
+- `"layout": "two-col"` on a stacked/`one-col` page — items flow in **two columns** within the section (e.g. Entrees without descriptions)
 - `"layout": "two-col"` on a `two-col` page — section sits in half the page, single-column items
 - Optional `"itemColumns": 1 | 2` overrides the layout default
 - On mobile (≤900px), all item columns collapse to a single column for readability

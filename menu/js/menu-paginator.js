@@ -42,6 +42,21 @@
     return units;
   }
 
+  function sectionHeaderUnit(section) {
+    return {
+      kind: "section-header",
+      sectionTitle: section.title,
+      subtitle: section.subtitle,
+      layout: section.layout,
+      layoutWithDescription: section.layoutWithDescription,
+      itemColumns: section.itemColumns,
+    };
+  }
+
+  function flattenSection(section) {
+    return [sectionHeaderUnit(section), ...sectionUnits(section)];
+  }
+
   function flattenPage(page) {
     const units = [];
     if (page.type === "biryani") {
@@ -50,13 +65,7 @@
     }
 
     for (const section of page.sections || []) {
-      units.push({
-        kind: "section-header",
-        sectionTitle: section.title,
-        subtitle: section.subtitle,
-        layout: section.layout,
-        itemColumns: section.itemColumns,
-      });
+      units.push(sectionHeaderUnit(section));
       units.push(...sectionUnits(section));
     }
     return units;
@@ -68,6 +77,7 @@
       if (unit.kind !== "section-header" || meta.has(unit.sectionTitle)) continue;
       meta.set(unit.sectionTitle, {
         layout: unit.layout,
+        layoutWithDescription: unit.layoutWithDescription,
         itemColumns: unit.itemColumns,
       });
     }
@@ -139,6 +149,7 @@
       if (section.groups?.length) copy.groups = section.groups;
       const meta = sectionMeta?.get(section.title);
       if (meta?.layout) copy.layout = meta.layout;
+      if (meta?.layoutWithDescription) copy.layoutWithDescription = meta.layoutWithDescription;
       if (meta?.itemColumns != null) copy.itemColumns = meta.itemColumns;
       return copy;
     });
@@ -169,6 +180,51 @@
     return pageCopy;
   }
 
+  function buildTwoColPairPage(page, leftUnits, rightUnits, chunkIndex, sectionMeta, biryaniUnits) {
+    const leftSections = rebuildSections(leftUnits, sectionMeta);
+    const rightSections = rebuildSections(rightUnits, sectionMeta);
+    const pageCopy = clone(page);
+    pageCopy.continuation = chunkIndex > 0;
+    pageCopy.continuationIndex = chunkIndex + 1;
+
+    if (page.type === "biryani") {
+      if (pageCopy.continuation) {
+        delete pageCopy.title;
+        delete pageCopy.subtitle;
+      } else {
+        if (!biryaniUnits.some((unit) => unit.kind === "biryani-title")) delete pageCopy.title;
+        if (!biryaniUnits.some((unit) => unit.kind === "biryani-subtitle")) delete pageCopy.subtitle;
+      }
+    }
+
+    function sectionHasContent(section) {
+      return Boolean(section?.items?.length || section?.groups?.length);
+    }
+
+    const pageSections = [];
+    if (sectionHasContent(leftSections[0])) pageSections.push(leftSections[0]);
+    if (sectionHasContent(rightSections[0])) pageSections.push(rightSections[0]);
+
+    if (!pageSections.length) {
+      pageSections.push(leftSections[0] || rightSections[0] || { title: page.sections[0].title, items: [] });
+    }
+
+    pageCopy.sections = pageSections;
+
+    for (const section of pageCopy.sections) {
+      const meta = sectionMeta.get(section.title);
+      if (meta?.layout) section.layout = meta.layout;
+      if (meta?.layoutWithDescription) section.layoutWithDescription = meta.layoutWithDescription;
+      if (meta?.itemColumns != null) section.itemColumns = meta.itemColumns;
+    }
+
+    return pageCopy;
+  }
+
+  function measurePairPage(page, leftUnits, rightUnits, chunkIndex, sectionMeta, biryaniUnits, measurePage) {
+    return measurePage(buildTwoColPairPage(page, leftUnits, rightUnits, chunkIndex, sectionMeta, biryaniUnits));
+  }
+
   function packUnits(units, page, measurePage) {
     if (!units.length) return [page];
 
@@ -194,12 +250,105 @@
     return chunks.map((chunkUnits, index) => chunkMeta(page, chunkUnits, index, sectionMeta));
   }
 
-  function paginateMenu(menu, measurePage) {
+  function packTwoColParallel(page, measurePage) {
+    const sections = page.sections || [];
+    const sectionMeta = sectionMetaFromUnits(flattenPage(page));
+    const biryaniUnits = flattenPage(page).filter(
+      (unit) => unit.kind === "biryani-title" || unit.kind === "biryani-subtitle"
+    );
+    const leftAll = flattenSection(sections[0]);
+    const rightAll = flattenSection(sections[1]);
+
+    const pages = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < leftAll.length || rightIndex < rightAll.length) {
+      let leftChunk = [];
+      let rightChunk = [];
+      let chunkIndex = pages.length;
+
+      while (leftIndex < leftAll.length || rightIndex < rightAll.length) {
+        let added = false;
+
+        if (leftIndex < leftAll.length) {
+          const nextLeft = leftAll[leftIndex];
+          const overflow = measurePairPage(
+            page,
+            leftChunk.concat(nextLeft),
+            rightChunk,
+            chunkIndex,
+            sectionMeta,
+            biryaniUnits,
+            measurePage
+          );
+          if (overflow <= 0) {
+            leftChunk.push(nextLeft);
+            leftIndex += 1;
+            added = true;
+          }
+        }
+
+        if (rightIndex < rightAll.length) {
+          const nextRight = rightAll[rightIndex];
+          const overflow = measurePairPage(
+            page,
+            leftChunk,
+            rightChunk.concat(nextRight),
+            chunkIndex,
+            sectionMeta,
+            biryaniUnits,
+            measurePage
+          );
+          if (overflow <= 0) {
+            rightChunk.push(nextRight);
+            rightIndex += 1;
+            added = true;
+          }
+        }
+
+        if (!added) break;
+      }
+
+      if (!leftChunk.length && !rightChunk.length) {
+        if (leftIndex < leftAll.length) {
+          leftChunk.push(leftAll[leftIndex]);
+          leftIndex += 1;
+        } else if (rightIndex < rightAll.length) {
+          rightChunk.push(rightAll[rightIndex]);
+          rightIndex += 1;
+        }
+      }
+
+      pages.push(buildTwoColPairPage(page, leftChunk, rightChunk, chunkIndex, sectionMeta, biryaniUnits));
+    }
+
+    return pages;
+  }
+
+  function shouldUseParallelTwoCol(page, getEffectivePageType) {
+    if (!getEffectivePageType) return false;
+    if ((page.sections || []).length !== 2) return false;
+    return getEffectivePageType(page) === "two-col";
+  }
+
+  function paginateMenu(menu, measurePage, options) {
+    const getEffectivePageType = options?.getEffectivePageType;
     const pages = [];
 
     for (const page of menu.pages) {
       if (!page.sections || page.type === "cover" || page.type === "back") {
         pages.push(page);
+        continue;
+      }
+
+      if (page.paginate === false) {
+        pages.push(page);
+        continue;
+      }
+
+      if (shouldUseParallelTwoCol(page, getEffectivePageType)) {
+        pages.push(...packTwoColParallel(page, measurePage));
         continue;
       }
 
