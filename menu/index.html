@@ -958,6 +958,7 @@
     function pageBodyClass(page) {
       const pageType = effectivePageType(page);
       const sectionCount = page.sections?.length || 0;
+      if (pageType === "biryani") return "";
       if (pageType === "two-col") {
         return sectionCount > 1 ? "two-col-grid" : "sections-stack";
       }
@@ -1011,22 +1012,49 @@
         </section>`;
     }
 
+    function renderBiryaniSectionContent(section) {
+      const subtitle = section.subtitle
+        ? `<p class="section-subtitle">${section.subtitle}</p>`
+        : "";
+      const categoryHeader = `<h3 class="biryani-category-title">${section.title}</h3>`;
+      const groups = (section.groups || [])
+        .map((g) => renderCompactGroup(g, section))
+        .join("");
+      return categoryHeader + subtitle + groups;
+    }
+
+    function biryaniBodyLayout(page) {
+      const layout = effectivePageType(page);
+      const sectionCount = page.sections?.length || 0;
+      if (layout === "two-col" && sectionCount > 1) return "two-col-grid";
+      if (layout === "one-col" && sectionCount > 1) return "sections-stack";
+      return "";
+    }
+
+    function renderBiryaniBody(page) {
+      const sections = page.sections || [];
+      const bodyClass = biryaniBodyLayout(page);
+      let body;
+
+      if (bodyClass === "two-col-grid" || bodyClass === "sections-stack") {
+        body = sections
+          .map(
+            (section) =>
+              `<div class="biryani-column">${renderBiryaniSectionContent(section)}</div>`
+          )
+          .join("");
+      } else {
+        body = sections.map(renderBiryaniSectionContent).join("");
+      }
+
+      return { body, bodyClass };
+    }
+
     function renderBiryaniPage(page, r) {
       const pageSubtitle = page.subtitle
         ? `<p class="section-subtitle biryani-page-subtitle">${page.subtitle}</p>`
         : "";
-      const body = (page.sections || [])
-        .map((section) => {
-          const subtitle = section.subtitle
-            ? `<p class="section-subtitle">${section.subtitle}</p>`
-            : "";
-          const categoryHeader = `<h3 class="biryani-category-title">${section.title}</h3>`;
-          const groups = (section.groups || [])
-            .map((g) => renderCompactGroup(g, section))
-            .join("");
-          return categoryHeader + subtitle + groups;
-        })
-        .join("");
+      const { body, bodyClass } = renderBiryaniBody(page);
 
       const chrome = `
             ${pageHeader(r.name)}
@@ -1038,35 +1066,26 @@
           ${pageDecorations()}
           <div class="page-inner">
             <div class="page-chrome">${chrome}</div>
-            <div class="page-body">${body}</div>
+            <div class="page-body${bodyClass ? ` ${bodyClass}` : ""}">${body}</div>
           </div>
         </div>`;
     }
 
     function renderContinuationPage(page, r) {
       let body;
+      let bodyClass;
       if (page.type === "biryani") {
-        body = (page.sections || [])
-          .map((section) => {
-            const subtitle = section.subtitle
-              ? `<p class="section-subtitle">${section.subtitle}</p>`
-              : "";
-            const categoryHeader = `<h3 class="biryani-category-title">${section.title}</h3>`;
-            const groups = (section.groups || [])
-              .map((g) => renderCompactGroup(g, section))
-              .join("");
-            return categoryHeader + subtitle + groups;
-          })
-          .join("");
+        ({ body, bodyClass } = renderBiryaniBody(page));
       } else {
         body = (page.sections || []).map((section) => renderSection(section, page)).join("");
+        bodyClass = pageBodyClass(page);
       }
       return `
         <div class="page" data-page="${page.id}" data-continuation="true">
           ${pageDecorations()}
           <div class="page-inner">
             <div class="page-chrome">${pageHeader(r.name)}</div>
-            <div class="page-body ${pageBodyClass(page)}">${body}</div>
+            <div class="page-body${bodyClass ? ` ${bodyClass}` : ""}">${body}</div>
           </div>
         </div>`;
     }
@@ -1190,20 +1209,18 @@
           ${pageDecorations()}
           <div class="page-inner">
             <div class="page-chrome">${pageHeader(r.name)}</div>
-            <div class="page-body multi-grid">${sections}</div>
+            <div class="page-body ${pageBodyClass(page)}">${sections}</div>
           </div>
         </div>`;
     }
 
     function renderContentPage(page, r) {
       if (page.continuation) return renderContinuationPage(page, r);
+      if (page.type === "biryani") return renderBiryaniPage(page, r);
+      if (page.type === "multi") return renderMultiPage(page, r);
       switch (effectivePageType(page)) {
-        case "biryani":
-          return renderBiryaniPage(page, r);
         case "one-col":
           return renderOneColPage(page, r);
-        case "multi":
-          return renderMultiPage(page, r);
         case "two-col":
         default:
           return renderTwoColPage(page, r);
