@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+    (function () {
+      var path = location.pathname;
+      var base = path.endsWith("/")
+        ? path
+        : /\.[^/]+$/.test(path)
+          ? path.slice(0, path.lastIndexOf("/") + 1)
+          : path + "/";
+      window.__MENU_BASE__ = base;
+      var el = document.createElement("base");
+      el.href = base;
+      document.head.appendChild(el);
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Persis Biryani Indian Grill — Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-deep: #0a1f1a;
+      --green-mid: #122820;
+      --gold: #c9a227;
+      --gold-light: #e8c96a;
+      --cream: #f5efe3;
+      --cream-muted: rgba(245, 239, 227, 0.82);
+      --page-w: 8.5in;
+      --page-h: 11in; /* US Letter */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Lora", Georgia, serif;
+      background: #1a1a1a;
+      color: var(--cream);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .fab-bar {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .fab {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 162, 39, 0.55);
+      background: rgba(10, 31, 26, 0.92);
+      color: var(--gold);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      transition: background 0.2s, color 0.2s, transform 0.2s, border-color 0.2s;
+    }
+
+    .fab:hover {
+      background: var(--gold);
+      color: var(--green-deep);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .fab[aria-pressed="true"] {
+      background: rgba(201, 162, 39, 0.18);
+      border-color: var(--gold-light);
+      color: var(--gold-light);
+    }
+
+    .fab[aria-pressed="true"]:hover {
+      background: var(--gold);
+      color: var(--green-deep);
+    }
+
+    .fab svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .item-desc {
+      display: none;
+      font-size: 0.62rem;
+      line-height: 1.55;
+      color: var(--cream-muted);
+      margin-top: 2px;
+    }
+
+    body.show-descriptions .item-desc {
+      display: block;
+    }
+
+    #menu-root {
+      padding: 32px 0 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .page {
+      width: var(--page-w);
+      height: var(--page-h);
+      position: relative;
+      overflow: hidden;
+      background: var(--green-deep);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .page-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: var(--menu-bg, url("./assets/background.jpg")) center center / cover no-repeat;
+    }
+
+
+    .page-inner {
+      position: relative;
+      z-index: 3;
+      padding: 0.55in 0.6in 0.5in;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-header {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .page-logo {
+      width: 180px;
+      height: auto;
+    }
+
+    .page-border {
+      position: absolute;
+      inset: 0.28in;
+      border: 1px solid rgba(201, 162, 39, 0.35);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .page-border::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border: 1px solid rgba(201, 162, 39, 0.15);
+    }
+
+    /* Cover */
+    .page.cover .page-inner {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 28px;
+    }
+
+    .cover-logo {
+      width: 320px;
+      max-width: 80%;
+      height: auto;
+    }
+
+    .cover-welcome {
+      font-family: "Cinzel", serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .cover-name {
+      font-family: "Cinzel", serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+
+    .cover-desc {
+      max-width: 5.5in;
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: var(--cream-muted);
+    }
+
+    .cover-tagline {
+      margin-top: 12px;
+      font-family: "Cinzel", serif;
+      font-size: 0.95rem;
+      font-style: italic;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: 200px;
+      color: var(--gold);
+      opacity: 0.7;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* Section headers */
+    .section-title {
+      font-family: "Cinzel", serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(201, 162, 39, 0.45);
+    }
+
+    .section-subtitle {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+
+    /* Two-column layout */
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.35in 0.4in;
+      flex: 1;
+    }
+
+    .one-col-grid {
+      display: block;
+      flex: 1;
+      columns: 2;
+      column-gap: 0.4in;
+    }
+
+    .one-col-grid .section-title {
+      column-span: all;
+      break-after: avoid;
+    }
+
+    .one-col-grid .section-subtitle {
+      column-span: all;
+    }
+
+    .one-col-grid .menu-item,
+    .one-col-grid .compact-group {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .multi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.3in 0.35in;
+      flex: 1;
+      align-content: start;
+    }
+
+    /* 3 sections: two on top, third spans full width */
+    .multi-grid:has(> section:nth-child(3):last-child) > section:nth-child(3) {
+      grid-column: 1 / -1;
+      columns: 2;
+      column-gap: 0.4in;
+    }
+
+    .multi-grid:has(> section:nth-child(3):last-child) > section:nth-child(3) .section-title,
+    .multi-grid:has(> section:nth-child(3):last-child) > section:nth-child(3) .section-subtitle {
+      column-span: all;
+    }
+
+    /* 4 sections: 2×2 grid */
+    .multi-grid:has(> section:nth-child(4)) > section:nth-child(3),
+    .multi-grid:has(> section:nth-child(4)) > section:nth-child(4) {
+      grid-column: auto;
+      columns: unset;
+    }
+
+    /* Menu items */
+    .menu-item {
+      margin-bottom: 11px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .item-name {
+      font-family: "Cinzel", serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+
+    .item-price {
+      font-family: "Cinzel", serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .biryani-page-title {
+      font-family: "Cinzel", serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .biryani-page-subtitle {
+      text-align: center;
+      margin: -10px 0 18px;
+    }
+
+    .biryani-section {
+      margin-bottom: 16px;
+      break-inside: avoid;
+    }
+
+    .biryani-section-title {
+      font-family: "Cinzel", serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .biryani-blurb {
+      font-size: 0.62rem;
+      line-height: 1.55;
+      color: var(--cream-muted);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .biryani-items {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .biryani-item-block {
+      break-inside: avoid;
+    }
+
+    .biryani-item-block .item-desc {
+      margin-top: 2px;
+    }
+
+    .biryani-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.65rem;
+    }
+
+    .biryani-item-name {
+      color: var(--cream-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .biryani-note {
+      font-size: 0.58rem;
+      color: var(--gold-light);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    .biryani-category-title {
+      font-family: "Cinzel", serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 14px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(201, 162, 39, 0.35);
+    }
+
+    .biryani-category-title:first-child {
+      margin-top: 0;
+    }
+
+    /* Back cover */
+    .page.back .page-inner {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .back-logo {
+      width: 240px;
+      max-width: 70%;
+      height: auto;
+      margin-bottom: 8px;
+    }
+
+    .back-title {
+      font-family: "Cinzel", serif;
+      font-size: 2rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+    }
+
+    .back-sub {
+      font-family: "Cinzel", serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .back-contact {
+      font-size: 0.78rem;
+      line-height: 2;
+      color: var(--cream-muted);
+    }
+
+    .back-contact strong {
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .back-website {
+      font-family: "Cinzel", serif;
+      font-size: 0.85rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+    }
+
+    .back-social-heading {
+      font-family: "Cinzel", serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      margin-bottom: 8px;
+    }
+
+    .back-social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 0;
+      line-height: 0;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .back-social-link svg {
+      display: block;
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    .back-social-link:hover {
+      transform: translateY(-1px);
+    }
+
+    .back-social-link--whatsapp {
+      background: #25d366;
+    }
+
+    .back-social-link--whatsapp:hover {
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    }
+
+    .back-social-link--facebook {
+      background: #1877f2;
+    }
+
+    .back-social-link--facebook:hover {
+      box-shadow: 0 4px 14px rgba(24, 119, 242, 0.35);
+    }
+
+    .back-social-link--instagram {
+      background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+    }
+
+    .back-social-link--instagram:hover {
+      box-shadow: 0 4px 14px rgba(221, 42, 123, 0.35);
+    }
+
+    @media not print {
+      .print-only { display: none !important; }
+    }
+
+    @media print {
+      .screen-only { display: none !important; }
+    }
+
+    .loading {
+      text-align: center;
+      padding: 80px;
+      color: var(--cream-muted);
+      font-family: "Cinzel", serif;
+    }
+
+    @page {
+      size: letter portrait;
+      margin: 0;
+    }
+
+    @media print {
+      html, body {
+        width: var(--page-w);
+        margin: 0 !important;
+        padding: 0 !important;
+        background: var(--green-deep) !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .fab-bar { display: none !important; }
+
+      .item-desc { display: none !important; }
+
+      body.show-descriptions .item-desc { display: block !important; }
+
+      #menu-root {
+        display: block;
+        padding: 0 !important;
+        margin: 0 !important;
+        gap: 0;
+      }
+
+      .page {
+        width: var(--page-w);
+        height: var(--page-h);
+        min-height: unset;
+        max-height: var(--page-h);
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        overflow: hidden;
+        page-break-after: always;
+        break-after: page;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        background-color: var(--green-deep);
+        background-image: var(--menu-bg, url("./assets/background.jpg"));
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+
+      .page-inner {
+        height: var(--page-h);
+        max-height: var(--page-h);
+        overflow: hidden;
+        padding: 0.55in 0.6in 0.5in;
+      }
+
+      .page.back .page-inner {
+        gap: 10px;
+        padding: 0.45in 0.55in 0.4in;
+      }
+
+      .page.back .back-logo {
+        width: 1.75in;
+      }
+
+      .page.back .back-title {
+        font-size: 1.35rem;
+        letter-spacing: 0.16em;
+      }
+
+      .page.back .back-sub {
+        font-size: 0.78rem;
+      }
+
+      .page.back .back-contact {
+        font-size: 0.68rem;
+        line-height: 1.7;
+      }
+
+      .back-social {
+        width: 100%;
+      }
+
+      .back-social-qrs {
+        display: grid;
+        grid-template-columns: repeat(3, 0.78in);
+        justify-content: center;
+        gap: 0.12in;
+        width: 100%;
+      }
+
+      .back-social-qr-item {
+        display: grid;
+        grid-template-rows: auto auto;
+        justify-items: center;
+        align-content: start;
+        gap: 5px;
+      }
+
+      .back-social-qr-wrap {
+        display: block;
+        padding: 4px;
+        background: rgba(245, 239, 227, 0.97);
+        border: 1px solid rgba(201, 162, 39, 0.55);
+        line-height: 0;
+      }
+
+      .back-social-qr-wrap img {
+        display: block;
+        width: 0.58in;
+        height: 0.58in;
+        image-rendering: pixelated;
+      }
+
+      .back-social-qr-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        color: #fff;
+        flex-shrink: 0;
+      }
+
+      .back-social-qr-icon svg {
+        display: block;
+        width: 13px;
+        height: 13px;
+        fill: currentColor;
+      }
+
+      .back-social-qr-icon--whatsapp {
+        background: #25d366;
+      }
+
+      .back-social-qr-icon--facebook {
+        background: #1877f2;
+      }
+
+      .back-social-qr-icon--instagram {
+        background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+      }
+
+      .page-bg {
+        height: var(--page-h);
+      }
+    }
+
+    @media screen and (max-width: 900px) {
+      .page {
+        width: 100%;
+        min-height: auto;
+      }
+
+      .two-col-grid,
+      .multi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-border { inset: 12px; }
+      .page-inner { padding: 48px 24px 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="fab-bar" aria-label="Menu actions">
+    <button
+      type="button"
+      class="fab"
+      id="toggle-descriptions"
+      aria-pressed="false"
+      aria-label="Show descriptions"
+      title="Show descriptions"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 6h16M4 12h10M4 18h14" />
+        <path d="M18 10v8" />
+        <path d="M15 13h6" />
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="fab"
+      id="print-menu"
+      aria-label="Print or save as PDF"
+      title="Print / Save as PDF (US Letter · enable Background graphics)"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 9V3h12v6" />
+        <rect x="6" y="13" width="12" height="8" rx="1" />
+        <path d="M6 17h12v-4H6z" />
+        <path d="M18 9h2a2 2 0 0 1 2 2v4h-4" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="menu-root">
+    <p class="loading">Loading menu…</p>
+  </div>
+
+  <script src="./js/menu-builder.js"></script>
+  <script>
+    function asset(path) {
+      return __MENU_BASE__ + String(path).replace(/^\.\//, "");
+    }
+
+    let menuAssets = { logo: "./assets/logo-new.png", background: "./assets/background.jpg" };
+
+    function applyAssets(assets) {
+      menuAssets = {
+        logo: assets?.logo || "./assets/logo-new.png",
+        background: assets?.background || "./assets/background.jpg",
+      };
+      document.documentElement.style.setProperty(
+        "--menu-bg",
+        `url("${asset(menuAssets.background)}")`
+      );
+    }
+
+    function pageDecorations() {
+      return `
+        <div class="page-bg" aria-hidden="true"></div>
+        <div class="page-border"></div>`;
+    }
+
+    function pageHeader(name) {
+      return `<header class="page-header"><img class="page-logo" src="${menuAssets.logo}" alt="${name}" width="180" height="68" /></header>`;
+    }
+
+    function renderItem(item) {
+      const desc = item.description
+        ? `<p class="item-desc">${item.description}</p>`
+        : "";
+      return `
+        <article class="menu-item">
+          <div class="item-header">
+            <span class="item-name">${item.name}</span>
+            <span class="item-price">${item.price}</span>
+          </div>
+          ${desc}
+        </article>`;
+    }
+
+    function renderCompactGroup(g, section) {
+      if (g.variants.length === 1) {
+        const v = g.variants[0];
+        return renderItem({
+          name: g.title,
+          price: v.price,
+          description: v.description,
+        });
+      }
+      const items = g.variants
+        .map((v) => {
+          const desc = v.description
+            ? `<p class="item-desc">${v.description}</p>`
+            : "";
+          return `
+        <div class="biryani-item-block">
+          <div class="biryani-item">
+            <span class="biryani-item-name">${v.label}</span>
+            <span class="item-price">${v.price}</span>
+          </div>
+          ${desc}
+        </div>`;
+        })
+        .join("");
+      const note = section.note ? `<p class="biryani-note">${section.note}</p>` : "";
+      return `
+              <div class="biryani-section">
+                <h4 class="biryani-section-title">${g.title}</h4>
+                <div class="biryani-items">${items}</div>
+                ${note}
+              </div>`;
+    }
+
+    function renderSection(section) {
+      const subtitle = section.subtitle
+        ? `<p class="section-subtitle">${section.subtitle}</p>`
+        : "";
+      if (section.groups?.length) {
+        const groups = section.groups.map((g) => renderCompactGroup(g, section)).join("");
+        return `
+        <section>
+          <h2 class="section-title">${section.title}</h2>
+          ${subtitle}
+          ${groups}
+        </section>`;
+      }
+      const items = (section.items || []).map(renderItem).join("");
+      return `
+        <section>
+          <h2 class="section-title">${section.title}</h2>
+          ${subtitle}
+          ${items}
+        </section>`;
+    }
+
+    function renderBiryaniPage(page, r) {
+      const pageSubtitle = page.subtitle
+        ? `<p class="section-subtitle biryani-page-subtitle">${page.subtitle}</p>`
+        : "";
+      const body = (page.sections || [])
+        .map((section) => {
+          const subtitle = section.subtitle
+            ? `<p class="section-subtitle">${section.subtitle}</p>`
+            : "";
+          const categoryHeader = `<h3 class="biryani-category-title">${section.title}</h3>`;
+          const groups = (section.groups || [])
+            .map((g) => renderCompactGroup(g, section))
+            .join("");
+          return categoryHeader + subtitle + groups;
+        })
+        .join("");
+
+      return `
+        <div class="page" data-page="${page.id}">
+          ${pageDecorations()}
+          <div class="page-inner">
+            ${pageHeader(r.name)}
+            <h2 class="biryani-page-title">${page.title}</h2>
+            ${pageSubtitle}
+            ${body}
+          </div>
+        </div>`;
+    }
+
+    function renderCover(r) {
+      return `
+        <div class="page cover" data-page="cover">
+          <div class="page-bg" aria-hidden="true"></div>
+          <div class="page-border"></div>
+          <div class="page-inner">
+            <div class="ornament" aria-hidden="true"></div>
+            <hp class="cover-welcome">Welcome to</hp>
+            <img class="cover-logo" src="${menuAssets.logo}" alt="${r.name}" width="320" height="120" />
+            <p class="cover-desc">${r.welcome}</p>
+            <div class="ornament" aria-hidden="true"></div>
+            <p class="cover-tagline">${r.tagline}</p>
+          </div>
+        </div>`;
+    }
+
+    const socialIcons = {
+      whatsapp: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.89-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`,
+      facebook: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 3h3.9L15 8.7h3.5L17.8 14h-3.3v7h-4.2v-7H8.5v-5.3h1.8V9.5c0-2.2 1.3-4.1 3.9-4.1.9 0 1.7.1 2.3.2V3z"/></svg>`,
+      instagram: `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zm5 4.6A4.4 4.4 0 1 0 16.4 12 4.4 4.4 0 0 0 12 7.6zm5.9-2.3a1 1 0 1 0-1 1 1 1 0 0 0 1-1zM12 9.2A2.8 2.8 0 1 1 9.2 12 2.8 2.8 0 0 1 12 9.2z"/></svg>`,
+    };
+
+    function renderBack(r) {
+      const social = [
+        {
+          key: "whatsapp",
+          label: "WhatsApp",
+          url: r.whatsapp,
+          qr: "assets/qr-whatsapp-code.png",
+        },
+        {
+          key: "facebook",
+          label: "Facebook",
+          url: r.facebook,
+          qr: "assets/qr-facebook-code.png",
+        },
+        {
+          key: "instagram",
+          label: "Instagram",
+          url: r.instagram,
+          qr: "assets/qr-instagram-code.png",
+        },
+      ];
+
+      const socialLinks = social
+        .map(
+          (s) =>
+            `<a class="back-social-link back-social-link--${s.key}" href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${s.label}">${socialIcons[s.key]}</a>`
+        )
+        .join("");
+
+      const socialQrs = social
+        .map(
+          (s) => `
+            <div class="back-social-qr-item">
+              <div class="back-social-qr-wrap">
+                <img src="${asset(s.qr)}" alt="${s.label} QR code" width="156" height="156" />
+              </div>
+              <div class="back-social-qr-icon back-social-qr-icon--${s.key}" aria-label="${s.label}">${socialIcons[s.key]}</div>
+            </div>`
+        )
+        .join("");
+
+      return `
+        <div class="page back" data-page="back">
+          <div class="page-bg" aria-hidden="true"></div>
+          <div class="page-border"></div>
+          <div class="page-inner">
+            <img class="back-logo" src="${menuAssets.logo}" alt="${r.name}" width="240" height="90" />
+            <div class="ornament" aria-hidden="true"></div>
+            <h2 class="back-title">Thank You</h2>
+            <p class="back-sub">We Do All Kind of Caterings</p>
+            <div class="ornament" aria-hidden="true"></div>
+            <div class="back-contact">
+              <p><strong>Restaurant:</strong> ${r.phone}</p>
+              <p><strong>Catering:</strong> ${r.phone}</p>
+              <p>${r.address}</p>
+            </div>
+            <div class="back-social">
+              <p class="back-social-heading">Follow Us</p>
+              <div class="back-social-links screen-only">${socialLinks}</div>
+              <div class="back-social-qrs print-only">${socialQrs}</div>
+            </div>
+            <p class="back-website">${r.website}</p>
+          </div>
+        </div>`;
+    }
+
+    function renderOneColPage(page, r) {
+      const cols = page.sections.map(renderSection).join("");
+      return `
+        <div class="page" data-page="${page.id}">
+          ${pageDecorations()}
+          <div class="page-inner">
+            ${pageHeader(r.name)}
+            <div class="one-col-grid">${cols}</div>
+          </div>
+        </div>`;
+    }
+
+    function renderTwoColPage(page, r) {
+      const cols = page.sections.map(renderSection).join("");
+      return `
+        <div class="page" data-page="${page.id}">
+          ${pageDecorations()}
+          <div class="page-inner">
+            ${pageHeader(r.name)}
+            <div class="two-col-grid">${cols}</div>
+          </div>
+        </div>`;
+    }
+
+    function renderMultiPage(page, r) {
+      const sections = page.sections.map(renderSection).join("");
+      return `
+        <div class="page" data-page="${page.id}">
+          ${pageDecorations()}
+          <div class="page-inner">
+            ${pageHeader(r.name)}
+            <div class="multi-grid">${sections}</div>
+          </div>
+        </div>`;
+    }
+
+    function renderMenu(data) {
+      const r = data.restaurant;
+      if (data.assets) applyAssets(data.assets);
+      return data.pages
+        .map((page) => {
+          switch (page.type) {
+            case "cover":
+              return renderCover(r);
+            case "back":
+              return renderBack(r);
+            case "biryani":
+              return renderBiryaniPage(page, r);
+            case "one-col":
+              return renderOneColPage(page, r);
+            case "multi":
+              return renderMultiPage(page, r);
+            case "two-col":
+            default:
+              return renderTwoColPage(page, r);
+          }
+        })
+        .join("");
+    }
+
+    const descIconShow = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 6h16M4 10h16M4 14h10" />
+        <path d="M18 16v4" />
+        <path d="M16 18h4" />
+      </svg>`;
+    const descIconHide = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 6h16M4 10h16M4 14h16" />
+      </svg>`;
+
+    let descriptionsVisible = false;
+    const toggleDescriptionsBtn = document.getElementById("toggle-descriptions");
+    const printMenuBtn = document.getElementById("print-menu");
+
+    function updateDescriptionsToggle() {
+      document.body.classList.toggle("show-descriptions", descriptionsVisible);
+      toggleDescriptionsBtn.setAttribute("aria-pressed", String(descriptionsVisible));
+      const label = descriptionsVisible ? "Hide descriptions" : "Show descriptions";
+      toggleDescriptionsBtn.title = label;
+      toggleDescriptionsBtn.setAttribute("aria-label", label);
+      toggleDescriptionsBtn.innerHTML = descriptionsVisible ? descIconHide : descIconShow;
+    }
+
+    toggleDescriptionsBtn.addEventListener("click", () => {
+      descriptionsVisible = !descriptionsVisible;
+      updateDescriptionsToggle();
+    });
+
+    printMenuBtn.addEventListener("click", () => window.print());
+
+    Promise.all([
+      fetch(asset("assets/menu-config.json")).then((res) => {
+        if (!res.ok) throw new Error("Failed to load menu-config.json");
+        return res.json();
+      }),
+      fetch(asset("assets/clover_categories.json")).then((res) => {
+        if (!res.ok) throw new Error("Failed to load clover_categories.json");
+        return res.json();
+      }),
+    ])
+      .then(([config, categories]) => {
+        const data = buildMenu(config, categories);
+        document.getElementById("menu-root").innerHTML = renderMenu(data);
+      })
+      .catch((err) => {
+        document.getElementById("menu-root").innerHTML =
+          `<p class="loading">Could not load menu: ${err.message}. Run from a local server (npx serve .).</p>`;
+      });
+  </script>
+</body>
+</html>

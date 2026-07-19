@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Persis Biryani — Scan Our Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-deep: #0a1f1a;
+      --gold: #c9a227;
+      --gold-light: #e8c96a;
+      --cream: #f5efe3;
+      --cream-muted: rgba(245, 239, 227, 0.82);
+      --page-w: 4in;
+      --page-h: 6in;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 15px;
+    }
+
+    html, body {
+      width: var(--page-w);
+      height: var(--page-h);
+      margin: 0;
+      padding: 0;
+      font-family: "Lora", Georgia, serif;
+      background: var(--green-deep);
+      color: var(--cream);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page {
+      width: var(--page-w);
+      height: var(--page-h);
+      position: relative;
+      overflow: hidden;
+      background: var(--green-deep);
+    }
+
+    .page-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: url("./assets/background.jpg") center center / cover no-repeat;
+    }
+
+    .page-border {
+      position: absolute;
+      inset: 0.12in;
+      border: 1px solid rgba(201, 162, 39, 0.35);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .page-border::after {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgba(201, 162, 39, 0.15);
+    }
+
+    .page-inner {
+      position: relative;
+      z-index: 3;
+      padding: 0.28in 0.22in 0.24in;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.14in;
+    }
+
+    .sign-logo {
+      width: 2.45in;
+      height: auto;
+      image-rendering: -webkit-optimize-contrast;
+    }
+
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 0.12in;
+      width: 2.1in;
+      color: var(--gold);
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .sign-title {
+      font-family: "Cinzel", serif;
+      font-size: 13pt;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      line-height: 1.35;
+      max-width: 3.4in;
+    }
+
+    .sign-subtitle {
+      font-size: 8.5pt;
+      line-height: 1.55;
+      color: var(--cream-muted);
+      max-width: 3.2in;
+    }
+
+    .qr-wrap {
+      padding: 0.1in;
+      background: rgba(245, 239, 227, 0.97);
+      border: 2px solid rgba(201, 162, 39, 0.75);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      flex-shrink: 0;
+    }
+
+    .qr-wrap img {
+      display: block;
+      width: 1.85in;
+      height: 1.85in;
+      image-rendering: pixelated;
+    }
+
+    .sign-url {
+      font-family: "Cinzel", serif;
+      font-size: 9pt;
+      letter-spacing: 0.06em;
+      color: var(--gold-light);
+    }
+
+    .sign-contact {
+      font-size: 8pt;
+      line-height: 1.65;
+      color: var(--cream-muted);
+    }
+
+    .sign-tagline {
+      font-family: "Lora", serif;
+      font-size: 8pt;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+    }
+
+    @page {
+      size: 4in 6in portrait;
+      margin: 0;
+    }
+
+    @media print {
+      html, body {
+        width: var(--page-w);
+        height: var(--page-h);
+        margin: 0 !important;
+        padding: 0 !important;
+        background: var(--green-deep) !important;
+      }
+
+      .page {
+        box-shadow: none;
+        page-break-after: avoid;
+      }
+
+      .page-bg {
+        background-color: var(--green-deep);
+        background-image: url("./assets/background.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="page-bg" aria-hidden="true"></div>
+    <div class="page-border"></div>
+    <div class="page-inner">
+      <img class="sign-logo" src="./assets/logo-new.png" alt="Persis Biryani Indian Grill" width="588" height="222" />
+      <div class="ornament" aria-hidden="true"></div>
+      <h1 class="sign-title">Scan to View Our Menu</h1>
+      <p class="sign-subtitle">Browse our full menu on your phone.</p>
+      <div class="qr-wrap">
+        <img src="./assets/qr-menu-code.png" alt="QR code for persisbiryanihouston.com/menu" width="555" height="555" />
+      </div>
+      <p class="sign-url">persisbiryanihouston.com/menu</p>
+      <div class="ornament" aria-hidden="true"></div>
+      <div class="sign-contact">
+        <p>832-534-3813</p>
+        <p>1460 Eldridge Pkwy, Ste #130</p>
+        <p>Houston, TX 77077</p>
+      </div>
+      <p class="sign-tagline">Savor the tradition, Experience the taste</p>
+    </div>
+  </div>
+</body>
+</html>

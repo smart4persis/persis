@@ -1,0 +1,1086 @@
+{
+  "generatedAt": "2026-07-19",
+  "note": "Short menu descriptions for printable online menu. Applied as menuDescription on each Clover item.",
+  "items": [
+    {
+      "id": "CA1M9JE2HYT0G",
+      "name": "Mini Poori",
+      "menuDescription": "Kid-sized puffy poori served with mild potato curry."
+    },
+    {
+      "id": "D6Y8XVE96ZTCE",
+      "name": "Mini Noodles",
+      "menuDescription": "Mild Indo-Chinese noodles with vegetables for kids."
+    },
+    {
+      "id": "EXY80YWX9KAW4",
+      "name": "Cheese Sticks(4 Pcs)",
+      "menuDescription": "Golden fried cheese sticks served crispy with ketchup."
+    },
+    {
+      "id": "JQQ8YPAKDQ6AC",
+      "name": "Spring rolls(2 Pcs)",
+      "menuDescription": "Crisp vegetable spring rolls with a light kid-friendly filling."
+    },
+    {
+      "id": "2ETDXFS5YERB6",
+      "name": "French Fries",
+      "menuDescription": "Classic golden fries, crispy outside and fluffy inside."
+    },
+    {
+      "id": "Q933QVDWZDQSG",
+      "name": "Chicken Nuggets (4 Pcs)",
+      "menuDescription": "Crispy breaded chicken nuggets with dipping sauce."
+    },
+    {
+      "id": "FAGHE8RCMHZY2",
+      "name": "Idly",
+      "menuDescription": "Soft steamed rice cakes served with sambar and coconut chutney."
+    },
+    {
+      "id": "FKQDJ54BYJP9A",
+      "name": "Poori",
+      "menuDescription": "Puffy deep-fried wheat bread served with flavorful potato curry."
+    },
+    {
+      "id": "0C84NHFMBXMMR",
+      "name": "Plain Dosa",
+      "menuDescription": "Crisp golden rice-and-lentil crepe with sambar and chutneys."
+    },
+    {
+      "id": "6BF3BR7N6T9V8",
+      "name": "Rava Onion Dosa",
+      "menuDescription": "Crispy semolina dosa with caramelized onions and South Indian spices."
+    },
+    {
+      "id": "C805H02Y9NDXA",
+      "name": "Rava Onion Masala Dosa",
+      "menuDescription": "Semolina dosa filled with spiced potato masala and onions."
+    },
+    {
+      "id": "C72G6TPCZ6RX8",
+      "name": "Masala Dosa",
+      "menuDescription": "Classic crisp dosa stuffed with seasoned potato masala."
+    },
+    {
+      "id": "95NXQ0WBWF6P2",
+      "name": "Mysore Masala Dosa",
+      "menuDescription": "Crisp dosa with spicy Mysore red chutney and potato masala."
+    },
+    {
+      "id": "6GJXA7QHJ3ANR",
+      "name": "Mysore Masala Dosa (Amul Cheese)",
+      "menuDescription": "Mysore masala dosa finished with melted Amul cheese."
+    },
+    {
+      "id": "YF0DFXVAVZAET",
+      "name": "Guntur Karam Dosa",
+      "menuDescription": "Fiery Guntur chili-spiced dosa with bold Andhra heat."
+    },
+    {
+      "id": "4971FB870FNT2",
+      "name": "Paneer Dosa",
+      "menuDescription": "Crisp dosa filled with seasoned paneer and aromatic spices."
+    },
+    {
+      "id": "SZJXGT4XCDBWM",
+      "name": "Egg Dosa",
+      "menuDescription": "Golden dosa topped with beaten egg and South Indian spices."
+    },
+    {
+      "id": "3TG9MJ8CS1E5P",
+      "name": "Masala Dosa(Amul Cheese)",
+      "menuDescription": "Classic masala dosa with melted Amul cheese."
+    },
+    {
+      "id": "055ZXXRN8MQZT",
+      "name": "Ghee Karam Idli",
+      "menuDescription": "Soft idli tossed in ghee and spicy karam podi with curry leaves."
+    },
+    {
+      "id": "ZC1KD6HT9H7KM",
+      "name": "Ghee Karam Dosa",
+      "menuDescription": "Crisp dosa brushed with ghee and fiery karam podi spice."
+    },
+    {
+      "id": "H84D3CVB2EFA4",
+      "name": "Punugulu",
+      "menuDescription": "Crisp deep-fried rice batter bites, a popular Andhra snack."
+    },
+    {
+      "id": "47E6CTMG75HCE",
+      "name": "Mirchi Bajji Stuffed(4 Pcs)",
+      "menuDescription": "Large green chilies stuffed, battered, and fried until crisp."
+    },
+    {
+      "id": "X9CMWWJFBRTPG",
+      "name": "Medu Vada (2 Pcs)",
+      "menuDescription": "Crispy lentil doughnuts with a soft center, served with sambar."
+    },
+    {
+      "id": "GRTJWJ0E1RD4E",
+      "name": "Uthappam",
+      "menuDescription": "Thick rice pancake topped with onions, tomatoes, and chilies."
+    },
+    {
+      "id": "V616F4X5VJ8MT",
+      "name": "Pulav Chicken 65",
+      "menuDescription": "Basmati pulav tossed with crispy Chicken 65 and South Indian spices."
+    },
+    {
+      "id": "WYBXT1JRJN2ZG",
+      "name": "Pulav Chicken Ghee Roast",
+      "menuDescription": "Fragrant basmati pulav finished with rich ghee-roast chicken."
+    },
+    {
+      "id": "WG59XCJ8SZ38M",
+      "name": "Pulav Goat Ghee Roast",
+      "menuDescription": "Aromatic basmati pulav layered with buttery ghee-roast goat."
+    },
+    {
+      "id": "NJCV5FJ87D84P",
+      "name": "Pulav Goat/Lamb Kheema",
+      "menuDescription": "Spiced minced goat and lamb kheema folded into fragrant basmati rice."
+    },
+    {
+      "id": "WR13Q90MF9E5G",
+      "name": "Pulav Veg Kheema",
+      "menuDescription": "Vegetable kheema pulav with aromatic basmati rice and gentle spices."
+    },
+    {
+      "id": "BNC1CGBBJ8DHC",
+      "name": "Hot & Sour Chicken Soup",
+      "menuDescription": "Tangy hot-and-sour soup with shredded chicken, mushrooms, and chili-vinegar broth."
+    },
+    {
+      "id": "H6FJMDX6PGNTC",
+      "name": "Hot & Sour Veg Soup",
+      "menuDescription": "Vegetable hot-and-sour soup with mushrooms and bright chili-vinegar broth."
+    },
+    {
+      "id": "2VBRNJZ9HP03M",
+      "name": "Creame of Tomato Soup",
+      "menuDescription": "Velvety cream of tomato soup finished with butter and gentle spices."
+    },
+    {
+      "id": "TA3Y2CHAW2110",
+      "name": "Samosa Chat",
+      "menuDescription": "Crushed samosas topped with yogurt, chutneys, and chaat masala."
+    },
+    {
+      "id": "DH1E6H5TQX3E6",
+      "name": "Papdi Chat",
+      "menuDescription": "Crisp papdi wafers with potatoes, chutneys, yogurt, and chaat masala."
+    },
+    {
+      "id": "7B0ZTKPBFKRY0",
+      "name": "Aloo Tikki Chat",
+      "menuDescription": "Golden potato tikki topped with chutneys, yogurt, and sev."
+    },
+    {
+      "id": "932EX8P6XME5T",
+      "name": "Fried Rice Chicken",
+      "menuDescription": "Classic fried rice wok-tossed with chicken and fresh vegetables."
+    },
+    {
+      "id": "FWT8EF0FVZE5P",
+      "name": "Fried Rice Egg",
+      "menuDescription": "Classic fried rice wok-tossed with egg and fresh vegetables."
+    },
+    {
+      "id": "8NB8G7N7M9E2P",
+      "name": "Fried Rice Veg",
+      "menuDescription": "Classic fried rice wok-tossed with mixed vegetables and light soy."
+    },
+    {
+      "id": "GFQGFJSVCA9NP",
+      "name": "Fried Rice Schezwan Chicken",
+      "menuDescription": "Wok-fried basmati rice with chicken in spicy Schezwan sauce."
+    },
+    {
+      "id": "AJ9VF3FDSM3R8",
+      "name": "Hakka Noodles Chicken",
+      "menuDescription": "Silky Hakka noodles stir-fried with chicken and crisp vegetables."
+    },
+    {
+      "id": "CM3NJKAPYWSN2",
+      "name": "Hakka Noodles Egg",
+      "menuDescription": "Silky Hakka noodles stir-fried with egg and crisp vegetables."
+    },
+    {
+      "id": "HYPKDFSNPEVN0",
+      "name": "Hakka Noodles Schezwan Chicken",
+      "menuDescription": "Stir-fried Hakka noodles with chicken in fiery Schezwan sauce."
+    },
+    {
+      "id": "S5XG1SFQCQ5RJ",
+      "name": "Hakka Noodles Schezwan Egg",
+      "menuDescription": "Stir-fried Hakka noodles with egg in fiery Schezwan sauce."
+    },
+    {
+      "id": "MWX13PRA5ZKQM",
+      "name": "Hakka Noodles Schezwan Veg",
+      "menuDescription": "Stir-fried Hakka noodles with vegetables in fiery Schezwan sauce."
+    },
+    {
+      "id": "S5NDGTKERRCPR",
+      "name": "Hakka Noodles Veg",
+      "menuDescription": "Silky Hakka noodles stir-fried with vegetables and crisp vegetables."
+    },
+    {
+      "id": "SJXC22QZ8GQWM",
+      "name": "Fried Rice Schezwan Egg",
+      "menuDescription": "Wok-fried basmati rice with egg in spicy Schezwan sauce."
+    },
+    {
+      "id": "H1526SC6JPNZM",
+      "name": "Fried Rice Schezwan Veg",
+      "menuDescription": "Wok-fried basmati rice with vegetables in spicy Schezwan sauce."
+    },
+    {
+      "id": "AWEPHXQCTMG1R",
+      "name": "Ginger Chicken Gravy",
+      "menuDescription": "Tender chicken in warming ginger-garlic Indo-Chinese gravy."
+    },
+    {
+      "id": "H4JV5ZG9RG8SC",
+      "name": "Feiry Chilli Garlic Zafrani Tikka",
+      "menuDescription": "Saffron tikka with fiery chili, garlic, and tandoor char."
+    },
+    {
+      "id": "AQNCAKBGJX4SR",
+      "name": "Guntur Chicken",
+      "menuDescription": "Andhra Guntur chili chicken with intense regional heat."
+    },
+    {
+      "id": "CYESW19TR4ABW",
+      "name": "Nellore Chepala Pulusu",
+      "menuDescription": "Andhra fish pulusu with tamarind, chilies, and coastal spices."
+    },
+    {
+      "id": "SHF5C8H5HMPH4",
+      "name": "Ghee Roast Lamb Biryani",
+      "menuDescription": "Basmati biryani layered with ghee-roast lamb and coastal spices."
+    },
+    {
+      "id": "VBMJVY1DY93D4",
+      "name": "Rice Kheer",
+      "menuDescription": "Creamy rice pudding with cardamom, nuts, and saffron."
+    },
+    {
+      "id": "T977CYPS1HDXY",
+      "name": "Mutton marag soup",
+      "menuDescription": "Hyderabadi mutton bone broth with warming spices and herbs."
+    },
+    {
+      "id": "42HQGF9Y52G64",
+      "name": "Tandoori Pomfret",
+      "menuDescription": "Whole pomfret marinated in tandoori spices and grilled until flaky."
+    },
+    {
+      "id": "9YTFV250919Y8",
+      "name": "Malai paneer tikka",
+      "menuDescription": "Creamy malai-marinated paneer grilled in the tandoor."
+    },
+    {
+      "id": "3AFFXV19MK492",
+      "name": "Chicken majestic",
+      "menuDescription": "Hyderabadi crispy chicken with curry leaves and bold spices."
+    },
+    {
+      "id": "7V48V74B8W8TR",
+      "name": "Persis special goat chops",
+      "menuDescription": "Premium goat chops marinated in house spices and grilled."
+    },
+    {
+      "id": "BW0RRHFTX1M6T",
+      "name": "Chicken pakora",
+      "menuDescription": "Crisp chickpea-battered chicken fritters with chutney."
+    },
+    {
+      "id": "0SP3W21D2V5PY",
+      "name": "Pachi mirchi chicken",
+      "menuDescription": "Green chili chicken with fresh pachi mirchi and Andhra masala."
+    },
+    {
+      "id": "SSH0NQ4QC2MPM",
+      "name": "Lamb Chops Pepper Fry",
+      "menuDescription": "Lamb chops pepper-fried with cracked pepper and onions."
+    },
+    {
+      "id": "SKHH8PJ80FGNY",
+      "name": "Achari chicken tikka",
+      "menuDescription": "Chicken tikka marinated in pickling spices, tandoor-grilled."
+    },
+    {
+      "id": "PW9Y3DXZZS6KY",
+      "name": "Guntur Chilli Mushroom",
+      "menuDescription": "Mushrooms in fiery Guntur chili masala with Andhra flavor."
+    },
+    {
+      "id": "W75CCD5K6XNQ0",
+      "name": "Zafrani Tangdi Kebab",
+      "menuDescription": "Saffron-marinated drumsticks grilled in the tandoor until juicy."
+    },
+    {
+      "id": "PJQ6D5ZNVX7S0",
+      "name": "Veg Lunch Combo",
+      "menuDescription": "Weekday veg combo with curry, rice, bread, appetizer, and dessert."
+    },
+    {
+      "id": "RXA87NAC7V9FP",
+      "name": "Non-Veg Lunch Combo",
+      "menuDescription": "Weekday combo with chicken or goat curry, rice, bread, appetizer, and dessert."
+    },
+    {
+      "id": "YTTJ9JA8NVCV6",
+      "name": "Paneer Vijayawada Biryani Combo",
+      "menuDescription": "Paneer Vijayawada Biryani served with appetizer and dessert, weekdays only."
+    },
+    {
+      "id": "6FG80DST532JE",
+      "name": "Chicken Vijayawada Biryani Combo",
+      "menuDescription": "Chicken Vijayawada Biryani served with appetizer and dessert, weekdays only."
+    },
+    {
+      "id": "59TE65M2XH6PY",
+      "name": "Hyderabadi Chicken Dum Biryani Combo",
+      "menuDescription": "Hyderabadi Chicken Dum Biryani served with appetizer and dessert, weekdays only."
+    },
+    {
+      "id": "B2YHWTE1EHEAA",
+      "name": "Goat Fry Biryani Combo",
+      "menuDescription": "Goat Fry Biryani served with appetizer and dessert, weekdays only."
+    },
+    {
+      "id": "KWE41WWR0T9EY",
+      "name": "Veg Dum Biryani Combo",
+      "menuDescription": "Veg Dum Biryani served with appetizer and dessert, weekdays only."
+    },
+    {
+      "id": "MNJKGGZ6EBKME",
+      "name": "Chicken Tikka",
+      "menuDescription": "Boneless chicken marinated in yogurt and tandoori spices, char-grilled until smoky."
+    },
+    {
+      "id": "VDD120J5CRG5C",
+      "name": "Tandoori Chicken",
+      "menuDescription": "Half chicken marinated overnight and roasted in the tandoor until charred and tender."
+    },
+    {
+      "id": "XZD2KTS6DJBQM",
+      "name": "Tandoori Shrimp",
+      "menuDescription": "Jumbo shrimp marinated in spices and grilled in the tandoor."
+    },
+    {
+      "id": "G85Q9766WJNZJ",
+      "name": "Malai Chicken Tikka",
+      "menuDescription": "Creamy mild chicken tikka with cashew, cream, and cardamom."
+    },
+    {
+      "id": "QHS1KN9DEGFSC",
+      "name": "Tangdi Kebab",
+      "menuDescription": "Drumsticks marinated in yogurt and spices, grilled until juicy."
+    },
+    {
+      "id": "7X7CPYHTBDZA4",
+      "name": "Angara Chicken Kebab",
+      "menuDescription": "Smoky charcoal-kissed chicken kebab with bold angara spices."
+    },
+    {
+      "id": "S77WXBJ049H8J",
+      "name": "Tandoori Lamb Chops",
+      "menuDescription": "Lamb chops marinated in yogurt and spices, flame-grilled in the tandoor until smoky and tender."
+    },
+    {
+      "id": "ZWZS474YK1AZE",
+      "name": "Paneer Tikka",
+      "menuDescription": "Paneer and peppers marinated in spiced yogurt and tandoor-grilled."
+    },
+    {
+      "id": "3SCWNBVGBQV10",
+      "name": "Badam Milk",
+      "menuDescription": "Chilled almond milk with saffron and cardamom."
+    },
+    {
+      "id": "K3QQNZ5W0HNNM",
+      "name": "Carrot Halwa",
+      "menuDescription": "Slow-cooked carrot halwa with ghee, milk, and nuts."
+    },
+    {
+      "id": "XAVV9B95TGGG8",
+      "name": "Gulab Jamun",
+      "menuDescription": "Soft milk dumplings soaked in rose-cardamom syrup."
+    },
+    {
+      "id": "MZCGDFCTQN00J",
+      "name": "Mango Lassi",
+      "menuDescription": "Thick refreshing yogurt drink blended with sweet mango."
+    },
+    {
+      "id": "81X9DV7EE1KK2",
+      "name": "Sprite",
+      "menuDescription": "Chilled Sprite, served cold."
+    },
+    {
+      "id": "7GE5B6RH6TRJ4",
+      "name": "Coke",
+      "menuDescription": "Chilled Coke, served cold."
+    },
+    {
+      "id": "0K9JXY63R1EEA",
+      "name": "Coke Zero",
+      "menuDescription": "Chilled Coke Zero, served cold."
+    },
+    {
+      "id": "5HBYPPYY5P49T",
+      "name": "Fanta",
+      "menuDescription": "Chilled Fanta, served cold."
+    },
+    {
+      "id": "ASRFV0ZYMDNHP",
+      "name": "Tea",
+      "menuDescription": "Hot masala chai brewed with milk and aromatic spices."
+    },
+    {
+      "id": "7FEF8BV3EZJVA",
+      "name": "Thumbs Up",
+      "menuDescription": "Chilled Thumbs Up, served cold."
+    },
+    {
+      "id": "0J9XQKRC47PVR",
+      "name": "Rasmalai",
+      "menuDescription": "Soft cheese patties in saffron-cardamom milk."
+    },
+    {
+      "id": "M19Y8RHGW1F3Y",
+      "name": "Orange Juice",
+      "menuDescription": "Freshly squeezed orange juice, bright and refreshing."
+    },
+    {
+      "id": "JYCPN00196R9P",
+      "name": "Ice cream Chocolate",
+      "menuDescription": "Creamy chocolate ice cream, a cool classic finish."
+    },
+    {
+      "id": "VXHB64BQNWJ8E",
+      "name": "Ice cream Cookies and Cream",
+      "menuDescription": "Creamy cookies and cream ice cream, a cool classic finish."
+    },
+    {
+      "id": "J6P2S6S46CWHG",
+      "name": "Ice cream Strawberry",
+      "menuDescription": "Creamy strawberry ice cream, a cool classic finish."
+    },
+    {
+      "id": "28S9H2V8FZ0YT",
+      "name": "Ice cream Vanilla",
+      "menuDescription": "Creamy vanilla ice cream, a cool classic finish."
+    },
+    {
+      "id": "ADGXAEKB8NBZ4",
+      "name": "vanilla Jamun",
+      "menuDescription": "Gulab jamun paired with vanilla ice cream."
+    },
+    {
+      "id": "2X59JA42WDJMP",
+      "name": "vanila rasamalai",
+      "menuDescription": "Rasmalai served with vanilla ice cream."
+    },
+    {
+      "id": "ANEAZAKTRT08T",
+      "name": "Golisoda",
+      "menuDescription": "Refreshing Indian-style soda with a bright, tangy fizz."
+    },
+    {
+      "id": "B5BCEZ43BJTKC",
+      "name": "Double ka Meetha",
+      "menuDescription": "Hyderabadi bread pudding soaked in saffron milk and nuts."
+    },
+    {
+      "id": "YEK6G7399T1G2",
+      "name": "Doodi halwa",
+      "menuDescription": "Traditional bottle-gourd halwa with ghee and cardamom."
+    },
+    {
+      "id": "ZSCFW30V7CYJ6",
+      "name": "Sizzling Brownie",
+      "menuDescription": "Warm chocolate brownie with ice cream, served sizzling."
+    },
+    {
+      "id": "9QHV8QTNK0MEP",
+      "name": "Falooda",
+      "menuDescription": "Layered falooda with rose syrup, vermicelli, and kulfi or ice cream."
+    },
+    {
+      "id": "FZP4803SBXKXY",
+      "name": "Kulfi Falooda",
+      "menuDescription": "Layered falooda with rose syrup, vermicelli, and kulfi or ice cream."
+    },
+    {
+      "id": "BHJD83B4C2KCP",
+      "name": "Mango Kulfi",
+      "menuDescription": "Dense traditional Indian ice cream, rich and creamy."
+    },
+    {
+      "id": "5SDJK7W44MNZE",
+      "name": "Malai Kulfi",
+      "menuDescription": "Dense traditional Indian ice cream, rich and creamy."
+    },
+    {
+      "id": "VE7C0ZVV7JNA2",
+      "name": "Butter Naan",
+      "menuDescription": "Soft tandoor naan brushed with butter until golden and pillowy."
+    },
+    {
+      "id": "CWEBAX0H76VZE",
+      "name": "Chilli Garlic Naan",
+      "menuDescription": "Soft naan topped with garlic, green chilies, and herbs, baked in the tandoor."
+    },
+    {
+      "id": "ERQE6JNQSM8GC",
+      "name": "Garlic Naan",
+      "menuDescription": "Buttery tandoor naan brushed with fresh garlic and herbs until golden."
+    },
+    {
+      "id": "W77G7J3C2N26P",
+      "name": "Onion Kulcha",
+      "menuDescription": "Tandoor-baked flatbread stuffed with onions and aromatic spices."
+    },
+    {
+      "id": "VCHM8ZR8BMRV2",
+      "name": "Plain Naan",
+      "menuDescription": "Classic leavened flatbread baked in the tandoor, lightly charred."
+    },
+    {
+      "id": "P1VZVHSV18RPM",
+      "name": "Tandoori Roti",
+      "menuDescription": "Whole-wheat roti cooked in the tandoor for a smoky finish."
+    },
+    {
+      "id": "X7NK2Y1DJCV6Y",
+      "name": "Cheese Naan",
+      "menuDescription": "Naan stuffed with melted cheese and baked until golden."
+    },
+    {
+      "id": "GFHEMW812M2C6",
+      "name": "Peshawari Naan",
+      "menuDescription": "Sweet stuffed naan with nuts and dried fruit."
+    },
+    {
+      "id": "GDHCBA134XX64",
+      "name": "Bread Basket",
+      "menuDescription": "Assorted fresh tandoor breads for sharing with curries."
+    },
+    {
+      "id": "NAV4NS34G01WR",
+      "name": "Chicken Hyderabadi Style Dum Biryani",
+      "menuDescription": "Authentic Hyderabadi dum biryani with chicken and fragrant basmati rice."
+    },
+    {
+      "id": "CMG26J2S4E70C",
+      "name": "Chicken Vijayawada Style Biryani",
+      "menuDescription": "Fiery Vijayawada-style biryani with spiced chicken layered over fragrant basmati rice."
+    },
+    {
+      "id": "QS2EHZ57Q6SA6",
+      "name": "Egg Biryani",
+      "menuDescription": "Fragrant basmati biryani layered with spiced boiled eggs, onions, and aromatic herbs."
+    },
+    {
+      "id": "56379AGHB09BW",
+      "name": "Goat Hyderabadi Style Dum Biryani",
+      "menuDescription": "Authentic Hyderabadi dum biryani with goat and fragrant basmati rice."
+    },
+    {
+      "id": "R9B6CJNKW123T",
+      "name": "Paneer Vijayawada Style Biryani",
+      "menuDescription": "Spicy Vijayawada-style biryani with soft paneer and bold Andhra masalas over basmati rice."
+    },
+    {
+      "id": "8KHB20YWWW1GE",
+      "name": "Shrimp Vijayawada Style Biryani",
+      "menuDescription": "Fiery Vijayawada-style biryani with shrimp and bold Andhra spices."
+    },
+    {
+      "id": "HK5JPTZWCPF06",
+      "name": "Veg Hyderabadi Style Dum Biryani",
+      "menuDescription": "Authentic Hyderabadi dum biryani with vegetables and fragrant basmati rice."
+    },
+    {
+      "id": "CM6KSVENMXQD8",
+      "name": "Chicken Ghee Roast Biryani",
+      "menuDescription": "Rich ghee-roast biryani with chicken and aromatic basmati rice."
+    },
+    {
+      "id": "55DMS2FGJW6CT",
+      "name": "Goat Ghee Roast Biryani",
+      "menuDescription": "Rich ghee-roast biryani with goat and aromatic basmati rice."
+    },
+    {
+      "id": "601BA24Y2SDB4",
+      "name": "Goat Fry Biryani",
+      "menuDescription": "Crisp fry-piece biryani with goat on fragrant basmati rice."
+    },
+    {
+      "id": "TNMF0YKK1HT8Y",
+      "name": "Chicken Fry Biryani",
+      "menuDescription": "Crisp fry-piece biryani with chicken on fragrant basmati rice."
+    },
+    {
+      "id": "W1C0VCBFDFPA4",
+      "name": "Shahi Gosh Biryani",
+      "menuDescription": "Royal goat biryani slow-layered with saffron basmati and rich Mughlai aromatics."
+    },
+    {
+      "id": "M4VXZ606W2NDT",
+      "name": "Andhra Chicken Curry",
+      "menuDescription": "Spicy Andhra chicken curry with red chilies and curry leaves."
+    },
+    {
+      "id": "YN125MNVMMDPT",
+      "name": "Butter Chicken",
+      "menuDescription": "Tender chicken in velvety tomato-butter sauce with cream."
+    },
+    {
+      "id": "X9Z398XTFAHKM",
+      "name": "Chicken Chettinad",
+      "menuDescription": "Chicken in bold Chettinad pepper masala with roasted South Indian spices."
+    },
+    {
+      "id": "Q7QG3MKNJ92TJ",
+      "name": "Chicken Korma",
+      "menuDescription": "Mild creamy chicken korma with cashew and yogurt."
+    },
+    {
+      "id": "X7RD731FN1R7C",
+      "name": "Chicken Vindaloo",
+      "menuDescription": "Chicken simmered in tangy, fiery Goan vindaloo masala with vinegar and garlic."
+    },
+    {
+      "id": "YMW4C6609NMY6",
+      "name": "Chicken Tikka Masala",
+      "menuDescription": "Char-grilled chicken tikka in rich spiced tomato-cream gravy."
+    },
+    {
+      "id": "GWR7E11762DHP",
+      "name": "Kadai Chicken",
+      "menuDescription": "Chicken with bell peppers and onions in bold kadai masala."
+    },
+    {
+      "id": "98P0ECC5VFB2A",
+      "name": "Goat Curry",
+      "menuDescription": "Slow-simmered goat curry with onions, tomatoes, and warming spices."
+    },
+    {
+      "id": "YAJP3KPD7A6J4",
+      "name": "Goat Chettinad",
+      "menuDescription": "Goat in bold Chettinad pepper masala with roasted spices."
+    },
+    {
+      "id": "Z0B2SKN8GN6QE",
+      "name": "Chettinad Shrimp Curry",
+      "menuDescription": "Shrimp in robust Chettinad gravy with pepper and curry leaves."
+    },
+    {
+      "id": "E6G2NR0P3V5WE",
+      "name": "Chettinad Fish Curry",
+      "menuDescription": "Fish in fiery Chettinad masala with tamarind and spices."
+    },
+    {
+      "id": "1YK69571KSQZ6",
+      "name": "Kodi Vepudu",
+      "menuDescription": "Andhra-style chicken stir-fry with red chilies and curry leaves."
+    },
+    {
+      "id": "ZVXWS81S8QJNJ",
+      "name": "Gongura Chicken",
+      "menuDescription": "Chicken with tangy gongura leaves and Andhra spices."
+    },
+    {
+      "id": "YZ16NVMNNW76J",
+      "name": "Lamb Rogan Josh",
+      "menuDescription": "Tender lamb in Kashmiri chili and yogurt gravy."
+    },
+    {
+      "id": "KP852FE0V2MGR",
+      "name": "Lamb Vindaloo",
+      "menuDescription": "Lamb in bold vindaloo masala with vinegar and garlic."
+    },
+    {
+      "id": "2DS5MPMX7538Y",
+      "name": "Kadai Lamb",
+      "menuDescription": "Tender lamb with peppers and onions in kadai tomato masala."
+    },
+    {
+      "id": "4V56AC1C7HDN6",
+      "name": "Lamb Korma",
+      "menuDescription": "Slow-braised lamb in rich mild korma with nuts."
+    },
+    {
+      "id": "BZ4P7YXKPTMFJ",
+      "name": "Gongura Goat",
+      "menuDescription": "Goat simmered with gongura leaves and regional spices."
+    },
+    {
+      "id": "DYNDB609ZYMZT",
+      "name": "Desi Chicken Curry",
+      "menuDescription": "Homestyle country chicken curry with onion and tomato."
+    },
+    {
+      "id": "E2J4KHPB0FP48",
+      "name": "Chicken Saag",
+      "menuDescription": "Chicken in creamy spinach masala with fenugreek."
+    },
+    {
+      "id": "AYNK91HFG9TMA",
+      "name": "Chicken Coconut Curry",
+      "menuDescription": "Chicken in coconut milk gravy with curry leaves."
+    },
+    {
+      "id": "3ZDPNHY8R879G",
+      "name": "Egg Curry",
+      "menuDescription": "Boiled eggs in aromatic onion-tomato curry with spices."
+    },
+    {
+      "id": "3PE9Q8V9VE2CW",
+      "name": "Goat Saag",
+      "menuDescription": "Goat in rich spinach gravy with ginger and garlic."
+    },
+    {
+      "id": "6BP094FJ9XXVA",
+      "name": "Goat Vindaloo",
+      "menuDescription": "Goat in tangy fiery vindaloo with vinegar and garlic."
+    },
+    {
+      "id": "8RDJ68H3G8PNW",
+      "name": "Goat Rogan Josh",
+      "menuDescription": "Goat braised in Kashmiri chili and yogurt gravy."
+    },
+    {
+      "id": "NG63KDXJG88FE",
+      "name": "Goat Kadai",
+      "menuDescription": "Goat with peppers, onions, and kadai masala spices."
+    },
+    {
+      "id": "R1B0113C6YV7W",
+      "name": "Lamb Saag",
+      "menuDescription": "Lamb simmered in seasoned spinach puree with garlic."
+    },
+    {
+      "id": "2104A6APPH8B6",
+      "name": "Lamb Chop Korma",
+      "menuDescription": "Tender lamb chops in mild creamy korma with cashew."
+    },
+    {
+      "id": "8ECZSP4PCCQB8",
+      "name": "Coconut Shrimp Curry",
+      "menuDescription": "Shrimp in creamy coconut gravy with curry leaves."
+    },
+    {
+      "id": "BDWFRX0KWSP9P",
+      "name": "Shrimp Curry",
+      "menuDescription": "Juicy shrimp in aromatic onion-tomato masala with coastal spices."
+    },
+    {
+      "id": "NDRNDK8GZ4MZR",
+      "name": "Dum Ka Chicken",
+      "menuDescription": "Slow-cooked chicken dum curry with aromatic spices."
+    },
+    {
+      "id": "HB2DEDNPAYCYA",
+      "name": "Aloo Gobi Masala",
+      "menuDescription": "Potatoes and cauliflower cooked in a warming spiced masala gravy."
+    },
+    {
+      "id": "A8G724DSRDCC4",
+      "name": "Chana Masala",
+      "menuDescription": "Chickpeas in tangy tomato-onion masala with Punjabi spices."
+    },
+    {
+      "id": "A8B4RSQTY9JM8",
+      "name": "Chettinad Veg Curry",
+      "menuDescription": "Mixed vegetables in bold Chettinad pepper masala."
+    },
+    {
+      "id": "KHPP05Y7MB3MG",
+      "name": "Dal Makhani",
+      "menuDescription": "Slow-cooked black lentils with butter and cream until velvety."
+    },
+    {
+      "id": "2QYRCDNZNM56J",
+      "name": "Dal Tadka",
+      "menuDescription": "Yellow lentils tempered with garlic, cumin, and red chili."
+    },
+    {
+      "id": "9FPC2C1TZ41CW",
+      "name": "Gutti Vankaya Kura",
+      "menuDescription": "Andhra stuffed baby eggplant in peanut-sesame masala."
+    },
+    {
+      "id": "0AHB2YJ351FWW",
+      "name": "Kadai Paneer",
+      "menuDescription": "Paneer with bell peppers and onions in thick kadai masala."
+    },
+    {
+      "id": "Q40C1AB15MYWG",
+      "name": "Malai Kofta",
+      "menuDescription": "Crisp vegetable kofta in rich creamy cashew-tomato gravy."
+    },
+    {
+      "id": "FER8A7CQE8GEA",
+      "name": "Methi Paneer",
+      "menuDescription": "Paneer and fenugreek leaves in mildly spiced gravy."
+    },
+    {
+      "id": "SS41GXYEWNRYG",
+      "name": "Mutter Paneer",
+      "menuDescription": "Soft paneer and green peas in classic tomato-onion masala."
+    },
+    {
+      "id": "81T4PK7D7QW68",
+      "name": "Navaratan Korma",
+      "menuDescription": "Mixed vegetables in mild creamy cashew and yogurt korma."
+    },
+    {
+      "id": "P2H7H24GKESRM",
+      "name": "Palak Paneer",
+      "menuDescription": "Fresh spinach puree with soft paneer and aromatic spices."
+    },
+    {
+      "id": "119J28CS01MP8",
+      "name": "Paneer Tikka Masala",
+      "menuDescription": "Grilled paneer tikka in smoky tomato-onion masala."
+    },
+    {
+      "id": "4754PX05W1XYR",
+      "name": "Paneer Butter Masala",
+      "menuDescription": "Soft paneer in creamy tomato-butter masala with fenugreek."
+    },
+    {
+      "id": "3N8E2F5X2HA20",
+      "name": "Kaju Curry",
+      "menuDescription": "Rich cashew-based curry with creamy nutty gravy."
+    },
+    {
+      "id": "FZMV6VZHZ5KF0",
+      "name": "Methi Matar Malai",
+      "menuDescription": "Fenugreek leaves and peas in luxurious creamy malai gravy."
+    },
+    {
+      "id": "VFX9EKGA89FA6",
+      "name": "Veg Jalfrezi",
+      "menuDescription": "Stir-fried vegetables in tangy tomato-pepper jalfrezi sauce."
+    },
+    {
+      "id": "0260ZTNW3PN6J",
+      "name": "Kadai Veg",
+      "menuDescription": "Mixed vegetables in kadai masala with peppers and coriander."
+    },
+    {
+      "id": "SGA0C5A41WZAR",
+      "name": "Paneer Burji",
+      "menuDescription": "Scrambled paneer with onions, tomatoes, and homestyle spices."
+    },
+    {
+      "id": "0C7TR2DDZDXQT",
+      "name": "Kaju Methi Curry",
+      "menuDescription": "Cashew and fenugreek leaves in creamy aromatic gravy."
+    },
+    {
+      "id": "D0WQHEKKG3Z0A",
+      "name": "Bhendi Masala",
+      "menuDescription": "Okra stir-fried with onions, tomatoes, and masala."
+    },
+    {
+      "id": "62QYMCJWZ8266",
+      "name": "Bhendi do Pyaza",
+      "menuDescription": "Okra cooked with double onions and North Indian spices."
+    },
+    {
+      "id": "6R29ZH2243ZR6",
+      "name": "Cheese Butter Masala",
+      "menuDescription": "Soft cheese in rich tomato-butter masala with cream."
+    },
+    {
+      "id": "NWNFM049JPX0G",
+      "name": "Chicken Ghee Roast",
+      "menuDescription": "Chicken slow-roasted in ghee with coastal spices."
+    },
+    {
+      "id": "E99N306CJWEGP",
+      "name": "Chicken Karam Podi",
+      "menuDescription": "Crispy chicken tossed in fiery Karam Podi spice blend with curry leaves."
+    },
+    {
+      "id": "6Q2PYHT22GH5W",
+      "name": "Chicken Manchurian",
+      "menuDescription": "Crispy chicken in tangy Indo-Chinese Manchurian gravy."
+    },
+    {
+      "id": "23FRBJVPP0JPJ",
+      "name": "Chicken Pepper Roast",
+      "menuDescription": "Chicken stir-fried with cracked black pepper and onions."
+    },
+    {
+      "id": "KKCF58HRKHJM4",
+      "name": "Chicken Salt & Pepper",
+      "menuDescription": "Chicken wok-tossed with salt, pepper, and aromatics."
+    },
+    {
+      "id": "MY0033AT0ZMP2",
+      "name": "Persis Chicken 65",
+      "menuDescription": "Crispy spice-crusted chicken tossed with curry leaves and South Indian chili."
+    },
+    {
+      "id": "GG1RJAY8MN49R",
+      "name": "Goat Ghee Roast",
+      "menuDescription": "Tender goat slow-roasted in fragrant ghee with bold coastal spices."
+    },
+    {
+      "id": "7Z05K6SAEFAMT",
+      "name": "Goat Pepper Roast",
+      "menuDescription": "Goat stir-fried with black pepper and South Indian spices."
+    },
+    {
+      "id": "MT2YRD6VB6FG2",
+      "name": "Apollo Shrimp",
+      "menuDescription": "Crisp shrimp in a zesty lightly spiced Apollo coating."
+    },
+    {
+      "id": "G211N75VQ0R3P",
+      "name": "Chilli Shrimp",
+      "menuDescription": "Shrimp in spicy chili-garlic sauce with peppers."
+    },
+    {
+      "id": "RCVFBJB991Y0Y",
+      "name": "Shrimp Ghee Roast",
+      "menuDescription": "Shrimp roasted in ghee with coastal masala and curry leaves."
+    },
+    {
+      "id": "BCD5Y33VTPBK4",
+      "name": "Shrimp Karam Podi",
+      "menuDescription": "Shrimp with fiery Karam Podi, curry leaves, and South Indian aromatics."
+    },
+    {
+      "id": "JTAAY9Q2Z0RHM",
+      "name": "Shrimp Manchurian",
+      "menuDescription": "Crispy shrimp in savory Indo-Chinese Manchurian sauce."
+    },
+    {
+      "id": "BW05H92MZBQN2",
+      "name": "Shrimp Pepper Roast",
+      "menuDescription": "Shrimp tossed with pepper, onions, and South Indian spices."
+    },
+    {
+      "id": "9CYVD1P0Q9XMJ",
+      "name": "Apollo Fish",
+      "menuDescription": "Battered fish fried golden and tossed in tangy spices."
+    },
+    {
+      "id": "ATTAXCAMDEKQP",
+      "name": "Chilli Chicken",
+      "menuDescription": "Crispy chicken in spicy chili-garlic sauce with peppers."
+    },
+    {
+      "id": "6D0NEBEKF7GTP",
+      "name": "Karivepaku Chicken",
+      "menuDescription": "Chicken with curry leaves, garlic, and South Indian spices."
+    },
+    {
+      "id": "Z4Z6E6H5JV51A",
+      "name": "Shrimp Salt & Pepper",
+      "menuDescription": "Crisp shrimp with salt, pepper, and light seasoning."
+    },
+    {
+      "id": "T2W4AKGXECWWA",
+      "name": "Baby corn Karam podi",
+      "menuDescription": "Baby corn with Karam Podi spices and curry leaves."
+    },
+    {
+      "id": "1CVN8DKSJ0VSR",
+      "name": "Baby corn Manchurian",
+      "menuDescription": "Crispy baby corn in savory Manchurian gravy."
+    },
+    {
+      "id": "EHFQREVBEDCN4",
+      "name": "Baby Corn Salt & Pepper",
+      "menuDescription": "Crispy baby corn with salt, pepper, and light spices."
+    },
+    {
+      "id": "4AZ9C6N88DZDY",
+      "name": "Gobi Karam Podi",
+      "menuDescription": "Cauliflower in Karam Podi spice blend with bold heat."
+    },
+    {
+      "id": "5YCZ0TVN2DRGA",
+      "name": "Gobi Manchurian",
+      "menuDescription": "Crispy cauliflower in classic Indo-Chinese Manchurian sauce."
+    },
+    {
+      "id": "H0RMCZDZYB74E",
+      "name": "Chilli Paneer",
+      "menuDescription": "Paneer in spicy chili sauce with peppers and aromatics."
+    },
+    {
+      "id": "R6MC9856J2KM8",
+      "name": "Persis Gobi 65",
+      "menuDescription": "Crispy cauliflower florets tossed in spices, garlic, and curry leaves."
+    },
+    {
+      "id": "0CVR72B9Y9PPG",
+      "name": "Persis Paneer 65",
+      "menuDescription": "Crispy paneer in bold South Indian 65 spice blend."
+    },
+    {
+      "id": "WMM104TXPND2Y",
+      "name": "Vegetable Samosa (2 pcs)",
+      "menuDescription": "Flaky pastry pockets filled with seasoned potatoes and peas, served with chutney."
+    },
+    {
+      "id": "SV5FHKCX5RCGP",
+      "name": "Paneer Karam podi",
+      "menuDescription": "Paneer with fiery Karam Podi and curry leaves."
+    },
+    {
+      "id": "JNFP5TN2WJSRC",
+      "name": "Gobi karivepaku",
+      "menuDescription": "Cauliflower with curry leaves and aromatic South Indian masala."
+    },
+    {
+      "id": "G5QMRK4MG917C",
+      "name": "Baby Corn Karivepaku",
+      "menuDescription": "Baby corn stir-fried with curry leaves and spices."
+    },
+    {
+      "id": "X1X5YSZVKKE1W",
+      "name": "Paneer Karivepaku",
+      "menuDescription": "Paneer with fresh curry leaves and South Indian spices."
+    },
+    {
+      "id": "7N6QE1J5JF49A",
+      "name": "Chilli Baby Corn",
+      "menuDescription": "Baby corn in spicy chili sauce with Indo-Chinese seasoning."
+    },
+    {
+      "id": "13J3VEFSRFTVY",
+      "name": "Chilli Gobi",
+      "menuDescription": "Crispy cauliflower in bold chili-garlic sauce with peppers."
+    },
+    {
+      "id": "A9F9EZNA14500",
+      "name": "Gobi Salt & Pepper",
+      "menuDescription": "Cauliflower with salt, pepper, and Indo-Chinese seasoning."
+    },
+    {
+      "id": "41XC1XWQZG3A0",
+      "name": "Paneer Salt & Pepper",
+      "menuDescription": "Paneer wok-tossed with salt, pepper, and aromatics."
+    },
+    {
+      "id": "MK0F3PHSHM352",
+      "name": "Veg Manchuria",
+      "menuDescription": "Crisp vegetable dumplings in tangy Manchurian gravy."
+    }
+  ]
+}

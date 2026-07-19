@@ -1,0 +1,92 @@
+{
+  "restaurant": {
+    "name": "Persis Biryani Indian Grill",
+    "tagline": "Savor the tradition, Experience the taste",
+    "address": "1460 Eldridge Pkwy, Ste #130 Houston, TX 77077",
+    "phone": "832-534-3813",
+    "website": "www.persisbiryanihouston.com",
+    "whatsapp": "https://chat.whatsapp.com/HHJR7gD3ujzKkaxRvoVZCO",
+    "facebook": "https://www.facebook.com/persisbiryaniindiangrillhouston/",
+    "instagram": "https://www.instagram.com/persisbiryani1",
+    "welcome": "Discover the authentic flavors of India through our carefully curated menu, featuring signature Hyderabadi Dum Biryanis, sizzling Tandoori specialties, rich Indian curries, handcrafted breads, and flavorful Indo-Chinese favorites. Prepared with premium ingredients, aromatic spices, and time-honored recipes, every dish is crafted to deliver an exceptional dining experience."
+  },
+  "assets": {
+    "logo": "./assets/logo-new.png",
+    "background": "./assets/background.jpg"
+  },
+  "ignoredCategories": ["Specials"],
+  "maxPages": 11,
+  "pages": [
+    { "id": "cover", "type": "cover" },
+    {
+      "id": "tiffins-chaat",
+      "type": "two-col",
+      "sections": [
+        { "title": "Tiffins", "category": "South Indian", "display": "standard" },
+        { "title": "Chaat Corner", "category": "Chat Corner" }
+      ]
+    },
+    {
+      "id": "indo-soups",
+      "type": "two-col",
+      "sections": [
+        { "title": "Indo-Chinese", "category": "Indo Chinese" },
+        { "title": "Soups", "category": "Soups" }
+      ]
+    },
+    {
+      "id": "appetizers",
+      "type": "two-col",
+      "sections": [
+        { "title": "Non-Veg Appetizers", "category": "Non-Veg Appetizers", "display": "standard"  },
+        { "title": "Veg Appetizers", "category": "Veg Appetizer", "display": "standard"  }
+      ]
+    },
+    {
+      "id": "biryani",
+      "type": "biryani",
+      "title": "Biryanis",
+      "sections": [
+        { "title": "Biryanis", "category": "Biryani" },
+        { "title": "Pulavs", "category": "Pulavs" }
+      ]
+    },
+    {
+      "id": "tandoor-breads",
+      "type": "two-col",
+      "sections": [
+        { "title": "Tandoori", "category": "Tandoor" },
+        { "title": "Breads", "category": "Breads" }
+      ]
+    },
+    {
+      "id": "entrees",
+      "type": "one-col",
+      "sections": [
+        { "title": "Veg Entrees", "category": "Veg Entrees", "display": "standard" },
+        { "title": "Non-Veg Entrees", "category": "Non-Veg Entrees", "display": "standard" }
+      ]
+    },
+    {
+      "id": "lunch",
+      "type": "biryani",
+      "title": "Lunch Combos",
+      "subtitle": "Weekdays Only · 11:30 AM – 2:30 PM",
+      "sections": [
+        { "title": "Curry Combos", "category": "Lunch Combos", "nameIncludes": "Lunch Combo", "nameExcludes": "Biryani" },
+        { "title": "Biryani Combos", "category": "Lunch Combos", "nameIncludes": "Biryani Combo" }
+      ]
+    },
+    {
+      "id": "desserts-drinks",
+      "type": "multi",
+      "sections": [
+        { "title": "Desserts", "category": "Deserts" },
+        { "title": "Ice Cream", "category": "Ice Cream" },
+        { "title": "Beverages", "category": "Beverages" },
+        { "title": "Kids Menu", "category": "Kids Menu" }
+      ]
+    },
+    { "id": "back", "type": "back" }
+  ]
+}
