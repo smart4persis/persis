@@ -6,8 +6,8 @@ const path = require("path");
 
 const MENU_DIR = path.join(__dirname, "..");
 const HTML_PATH = path.join(MENU_DIR, "qr-sign.html");
-const PNG_PATH = path.join(MENU_DIR, "assets", "qr-menu-sign.png");
-const PDF_PATH = path.join(MENU_DIR, "assets", "qr-menu-sign.pdf");
+const PNG_PATH = path.join(MENU_DIR, "assets", "qr", "qr-menu-sign.png");
+const PDF_PATH = path.join(MENU_DIR, "assets", "qr", "qr-menu-sign.pdf");
 
 const PAGE_W_IN = 4;
 const PAGE_H_IN = 6;

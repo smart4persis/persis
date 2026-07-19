@@ -12,7 +12,8 @@ from PIL import Image
 
 MENU_DIR = Path(__file__).resolve().parent.parent
 ASSETS_DIR = MENU_DIR / "assets"
-QR_PATH = ASSETS_DIR / "qr-menu-code.png"
+QR_DIR = ASSETS_DIR / "qr"
+QR_PATH = QR_DIR / "qr-menu-code.png"
 WHATSAPP_QR_PATH = ASSETS_DIR / "qr-whatsapp-code.png"
 FACEBOOK_QR_PATH = ASSETS_DIR / "qr-facebook-code.png"
 INSTAGRAM_QR_PATH = ASSETS_DIR / "qr-instagram-code.png"
@@ -57,6 +58,7 @@ def render_sign() -> None:
 
 def main() -> None:
     ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+    QR_DIR.mkdir(parents=True, exist_ok=True)
     generate_qr_code(MENU_URL, QR_PATH, MENU_QR_PX)
     generate_qr_code(WHATSAPP_URL, WHATSAPP_QR_PATH, SOCIAL_QR_PX)
     generate_qr_code(FACEBOOK_URL, FACEBOOK_QR_PATH, SOCIAL_QR_PX)
