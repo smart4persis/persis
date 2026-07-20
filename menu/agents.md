@@ -8,9 +8,19 @@
 - Do not hardcode. Use the data from clover_categories.json
 
 ## How to update the menu
-1. Pull latest Clover data: `node scripts/fetch-clover-categories.js` (items sorted by similarity clusters, then price ascending within each cluster)
+1. Pull latest Clover data: `node scripts/fetch-clover-categories.js` (items sorted by price ascending, then name)
 2. Edit `assets/menu-config.json` to change page layout or ignored categories (category names must match Clover)
-3. Refresh `index.html` in the browser
+3. Preview: `npx serve .` from repo root, open `/menu/`
+
+## JavaScript modules (`js/`)
+| File | Role |
+|------|------|
+| `menu-app.js` | Entry point: fetch JSON, bootstrap UI |
+| `menu-builder.js` | Merge config + Clover data into page objects |
+| `menu-grouping.js` | Compact display grouping heuristics |
+| `menu-layout.js` | Page/section layout resolution |
+| `menu-renderer.js` | HTML rendering |
+| `menu-fit.js` | CSS zoom to fit overflowing page content |
 
 ## QR menu sign
 - Printable sign for `persisbiryanihouston.com/menu` lives in `assets/qr-menu-sign.png` and `assets/qr-menu-sign.pdf` (4×6 in, 300 DPI)
@@ -28,8 +38,9 @@ Sections only reference Clover **category names** — items, prices, and descrip
 - Optional `"itemColumns": 1 | 2` overrides the layout default
 - On mobile (≤900px), all item columns collapse to a single column for readability
 
-### Automatic continuation pages
-- On every load (and on resize / description toggle), content pages are measured against the fixed page height
-- When items no longer fit — because Clover added more items, descriptions are shown, or the viewport is narrower — overflow is moved to a new continuation page with the same logo header
-- Cover and back are never split
-- `maxPages` in config applies to configured pages; continuation pages from overflow may push the printed total higher (a console warning is logged)
+### Page overflow (CSS fit)
+- After render, each content page is measured against the fixed page height (`--page-h`)
+- When content overflows, the page body is scaled down uniformly with CSS `zoom` so it fits on one printed page
+- Cover and back pages are never scaled
+- If a page scales too small, split it into two pages in `menu-config.json` (e.g. move one section to a new page entry)
+- Fit recalculates on window resize and when descriptions are toggled

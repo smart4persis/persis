@@ -31,7 +31,7 @@
       "id": "indo-soups",
       "type": "one-col",
       "sections": [
-        { "title": "Indo-Chinese", "category": "Indo Chinese" },
+        { "title": "Indo-Chinese", "category": "Indo Chinese", "layoutWithDescription": "two-col" },
         { "title": "Soups", "category": "Soups" }
       ]
     },
@@ -85,7 +85,6 @@
     {
       "id": "desserts-drinks",
       "type": "multi",
-      "paginate": false,
       "sections": [
         { "title": "Desserts", "category": "Deserts" },
         { "title": "Ice Cream", "category": "Ice Cream" },

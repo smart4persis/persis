@@ -44,147 +44,12 @@ function descriptionMapFromFile(filePath) {
   return map;
 }
 
-function words(name) {
-  return (name || "").trim().split(/\s+/);
-}
-
-function longestCommonWordPrefix(names) {
-  if (!names.length) return "";
-  const first = words(names[0]);
-  let matchLen = 0;
-  for (let i = 1; i <= first.length; i++) {
-    const prefix = `${first.slice(0, i).join(" ")} `;
-    if (names.every((name) => name.startsWith(prefix))) matchLen = i;
-    else break;
-  }
-  return matchLen ? `${first.slice(0, matchLen).join(" ")} ` : "";
-}
-
-function prefixWordCount(prefix) {
-  return words(prefix.trim()).length;
-}
-
-function styleSuffix(name) {
-  const parts = words(name);
-  if (parts.length < 3) return "";
-  return parts.slice(1).join(" ");
-}
-
-
-function clusterBySharedPrefix(items) {
-  const clusters = [];
-  const consumed = new Set();
-
-  for (let i = 0; i < items.length; i++) {
-    if (consumed.has(i)) continue;
-
-    const cluster = [items[i]];
-    const clusterIndices = [i];
-
-    for (let j = i + 1; j < items.length; j++) {
-      if (consumed.has(j)) continue;
-      const prefix = longestCommonWordPrefix([
-        ...cluster.map((item) => item.name),
-        items[j].name,
-      ]);
-      if (prefixWordCount(prefix) >= 2) {
-        cluster.push(items[j]);
-        clusterIndices.push(j);
-      }
-    }
-
-    if (
-      cluster.length >= 2 &&
-      prefixWordCount(longestCommonWordPrefix(cluster.map((item) => item.name))) >= 2
-    ) {
-      clusterIndices.forEach((idx) => consumed.add(idx));
-      clusters.push(cluster);
-    }
-  }
-
-  return {
-    clusters,
-    remaining: items.filter((_, idx) => !consumed.has(idx)),
-  };
-}
-
-function clusterByStyleSuffix(items) {
-  const clusters = [];
-  const consumed = new Set();
-  const bySuffix = new Map();
-
-  items.forEach((item, idx) => {
-    const suffix = styleSuffix(item.name);
-    if (!suffix) return;
-    if (!bySuffix.has(suffix)) bySuffix.set(suffix, []);
-    bySuffix.get(suffix).push({ item, idx });
+function sortItemsByPriceThenName(items) {
+  return [...items].sort((a, b) => {
+    const priceDiff = (a.price ?? 0) - (b.price ?? 0);
+    if (priceDiff !== 0) return priceDiff;
+    return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
   });
-
-  for (const entries of bySuffix.values()) {
-    if (entries.length < 2) continue;
-    if (entries.some(({ idx }) => consumed.has(idx))) continue;
-    entries.forEach(({ idx }) => consumed.add(idx));
-    clusters.push(entries.map(({ item }) => item));
-  }
-
-  return {
-    clusters,
-    remaining: items.filter((_, idx) => !consumed.has(idx)),
-  };
-}
-
-function clusterSimilarItems(items) {
-  const clusters = [];
-  const consumed = new Set();
-
-  for (const item of items) {
-    const groupId = item.itemGroup?.id;
-    if (!groupId) continue;
-    if (!clusters.some((cluster) => cluster[0]?.itemGroup?.id === groupId)) {
-      const groupItems = items.filter((candidate) => candidate.itemGroup?.id === groupId);
-      groupItems.forEach((candidate) => consumed.add(candidate.id));
-      clusters.push(groupItems);
-    }
-  }
-
-  let remaining = items.filter((item) => !consumed.has(item.id));
-
-  const prefixPass = clusterBySharedPrefix(remaining);
-  clusters.push(...prefixPass.clusters);
-  remaining = prefixPass.remaining;
-
-  const suffixPass = clusterByStyleSuffix(remaining);
-  clusters.push(...suffixPass.clusters);
-  remaining = suffixPass.remaining;
-
-  for (const item of remaining) {
-    clusters.push([item]);
-  }
-
-  return clusters;
-}
-
-function sortItemsBySimilarityThenPrice(items) {
-  const clusters = clusterSimilarItems(items);
-
-  clusters.sort((a, b) => {
-    const minA = Math.min(...a.map((item) => item.price ?? 0));
-    const minB = Math.min(...b.map((item) => item.price ?? 0));
-    if (minA !== minB) return minA - minB;
-    return a[0].name.localeCompare(b[0].name, undefined, { sensitivity: "base" });
-  });
-
-  const result = [];
-  for (const cluster of clusters) {
-    cluster.sort((a, b) => {
-      const priceDiff = (a.price ?? 0) - (b.price ?? 0);
-      if (priceDiff !== 0) return priceDiff;
-      return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
-    });
-    result.push(...cluster);
-  }
-
-  return result;
 }
 
 function normalizeItem(item, descriptions) {
@@ -196,7 +61,7 @@ function normalizeItem(item, descriptions) {
 }
 
 function normalizeCategory(category, descriptions) {
-  const items = sortItemsBySimilarityThenPrice(
+  const items = sortItemsByPriceThenName(
     (category.items?.elements || category.items || []).map((item) =>
       normalizeItem(item, descriptions)
     )
