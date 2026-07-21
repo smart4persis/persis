@@ -41,13 +41,57 @@ function shouldUseMobileLayout(options = {}) {
   return isMobileView();
 }
 
+function setupMobileNav() {
+  const nav = document.querySelector(".mobile-nav");
+  if (!nav) return;
+
+  const links = [...nav.querySelectorAll(".mobile-nav-link")];
+  if (!links.length) return;
+
+  // Smooth scroll on tap
+  nav.addEventListener("click", (e) => {
+    const link = e.target.closest(".mobile-nav-link");
+    if (!link) return;
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute("href"));
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  // Highlight active link on scroll
+  const sections = links.map((l) => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+  let ticking = false;
+  function updateActive() {
+    const offset = 80;
+    let activeIdx = 0;
+    for (let i = 0; i < sections.length; i++) {
+      if (sections[i].getBoundingClientRect().top <= offset) activeIdx = i;
+    }
+    links.forEach((l, i) => l.classList.toggle("active", i === activeIdx));
+    // Scroll nav to keep active link visible
+    const activeLink = links[activeIdx];
+    if (activeLink) {
+      activeLink.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
+    ticking = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateActive);
+    }
+  });
+  updateActive();
+}
+
 function mountMenu(options = {}) {
   if (!ctx.menuData) return;
   const root = document.getElementById("menu-root");
   const mobile = shouldUseMobileLayout(options);
   document.body.classList.toggle("mobile-menu", mobile);
   root.innerHTML = renderMenu(ctx.menuData, ctx, { mobile });
-  if (!mobile) {
+  if (mobile) {
+    setupMobileNav();
+  } else {
     requestAnimationFrame(() => fitContentPages(root));
   }
 }

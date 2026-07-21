@@ -7,6 +7,8 @@ import { buildCompactGroups, itemFromClover } from "./menu-grouping.js";
 
 const fmt = (cents) => `$${(cents / 100).toFixed(2)}`;
 
+const VALID_PAGE_TYPES = new Set(["one-col", "flow", "cover", "back"]);
+
 function rawCategoryItems(categories, name, ignored) {
   if (ignored.includes(name)) return [];
   const cat = categories.find((c) => c.name === name && !c.deleted);
@@ -49,39 +51,12 @@ function resolveSection(section, categories, ignored) {
   else if (offset) raw = raw.slice(offset);
 
   const display = section.display ?? "compact";
-  const layout = section.layout;
-  const layoutWithDescription =
-    section.layoutWithDescription || section.typeWithDescription || null;
-  if (layout != null && layout !== "one-col" && layout !== "two-col") {
-    throw new Error(
-      `Section "${title}" has invalid layout "${layout}"; use "one-col" or "two-col".`
-    );
-  }
-  if (
-    layoutWithDescription != null &&
-    layoutWithDescription !== "one-col" &&
-    layoutWithDescription !== "two-col"
-  ) {
-    throw new Error(
-      `Section "${title}" has invalid layoutWithDescription "${layoutWithDescription}".`
-    );
-  }
-
-  let itemColumns = section.itemColumns;
-  if (itemColumns != null && itemColumns !== 1 && itemColumns !== 2) {
-    throw new Error(
-      `Section "${title}" has invalid itemColumns "${itemColumns}"; use 1 or 2.`
-    );
-  }
 
   if (display === "compact") {
     return {
       title,
       subtitle: section.subtitle,
       note: section.note,
-      layout,
-      layoutWithDescription,
-      itemColumns,
       groups: buildCompactGroups(raw, title, fmt),
     };
   }
@@ -90,26 +65,22 @@ function resolveSection(section, categories, ignored) {
     title,
     subtitle: section.subtitle,
     note: section.note,
-    layout,
-    layoutWithDescription,
-    itemColumns,
     items: raw.map((i) => itemFromClover(i, fmt)),
   };
 }
 
 function resolvePage(page, categories, ignored) {
   if (!page.sections) return page;
-  if (
-    page.typeWithDescription != null &&
-    page.typeWithDescription !== "one-col" &&
-    page.typeWithDescription !== "two-col" &&
-    page.typeWithDescription !== "multi" &&
-    page.typeWithDescription !== "biryani"
-  ) {
+
+  if (page.type && !VALID_PAGE_TYPES.has(page.type)) {
+    throw new Error(`Page "${page.id}" has invalid type "${page.type}". Use "one-col" or "flow".`);
+  }
+  if (page.typeWithDescription && !VALID_PAGE_TYPES.has(page.typeWithDescription)) {
     throw new Error(
-      `Page "${page.id}" has invalid typeWithDescription "${page.typeWithDescription}".`
+      `Page "${page.id}" has invalid typeWithDescription "${page.typeWithDescription}". Use "one-col" or "flow".`
     );
   }
+
   const sections = sortSectionsVegetarianFirst(page.sections);
   return {
     ...page,

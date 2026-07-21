@@ -35,8 +35,9 @@ Sections only reference Clover **category names** — items, prices, and descrip
 - `"layout": "one-col"` — single column of items (default on stacked pages)
 - `"layout": "two-col"` on a stacked/`one-col` page — items flow in **two columns** within the section (e.g. Entrees without descriptions)
 - `"layout": "two-col"` on a `two-col` page — section sits in half the page, single-column items
+- **Page `"type": "flow"`** — CSS multi-column flow layout; all sections flow continuously through two columns. When a section overflows the first column it continues in the second, and the next section picks up where the previous left off (no forced grid cell assignment)
 - Optional `"itemColumns": 1 | 2` overrides the layout default
-- On mobile (≤900px), all item columns collapse to a single column for readability
+- On mobile (≤900px), all item columns and flow-cols collapse to a single column for readability
 
 ### Page overflow (CSS fit)
 - After render, each content page is measured against the fixed page height (`--page-h`)

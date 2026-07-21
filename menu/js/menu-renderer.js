@@ -1,11 +1,7 @@
 /**
  * Renders menu pages as HTML strings.
  */
-import {
-  biryaniBodyLayout,
-  pageBodyClass,
-  sectionClassAttr,
-} from "./menu-layout.js";
+import { pageBodyClass } from "./menu-layout.js";
 
 function asset(path) {
   return globalThis.__MENU_BASE__ + String(path).replace(/^\.\//, "");
@@ -82,15 +78,19 @@ function renderCompactGroup(g, section) {
               </div>`;
 }
 
-function renderSection(section, page, ctx) {
-  const classAttr = sectionClassAttr(section, page, ctx);
+function slugify(str) {
+  return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function renderSection(section, opts = {}) {
+  const id = opts.id ? ` id="${opts.id}"` : "";
   const subtitle = section.subtitle
     ? `<p class="section-subtitle">${section.subtitle}</p>`
     : "";
   if (section.groups?.length) {
     const groups = section.groups.map((g) => renderCompactGroup(g, section)).join("");
     return `
-        <section${classAttr}>
+        <section${id}>
           <h2 class="section-title">${section.title}</h2>
           ${subtitle}
           ${groups}
@@ -98,58 +98,31 @@ function renderSection(section, page, ctx) {
   }
   const items = (section.items || []).map(renderItem).join("");
   return `
-        <section${classAttr}>
+        <section${id}>
           <h2 class="section-title">${section.title}</h2>
           ${subtitle}
           ${items}
         </section>`;
 }
 
-function renderBiryaniSectionContent(section) {
-  const subtitle = section.subtitle
-    ? `<p class="section-subtitle">${section.subtitle}</p>`
+function renderContentPage(page, r, ctx) {
+  const sections = page.sections.map((section) => renderSection(section)).join("");
+  const pageTitle = page.title
+    ? `<h2 class="page-title">${page.title}</h2>`
     : "";
-  const categoryHeader = `<h3 class="biryani-category-title">${section.title}</h3>`;
-  const groups = (section.groups || []).map((g) => renderCompactGroup(g, section)).join("");
-  return categoryHeader + subtitle + groups;
-}
-
-function renderBiryaniBody(page, ctx) {
-  const sections = page.sections || [];
-  const bodyClass = biryaniBodyLayout(page, ctx);
-  let body;
-
-  if (bodyClass === "two-col-grid" || bodyClass === "sections-stack") {
-    body = sections
-      .map(
-        (section) =>
-          `<div class="biryani-column">${renderBiryaniSectionContent(section)}</div>`
-      )
-      .join("");
-  } else {
-    body = sections.map(renderBiryaniSectionContent).join("");
-  }
-
-  return { body, bodyClass };
-}
-
-function renderBiryaniPage(page, r, ctx) {
   const pageSubtitle = page.subtitle
-    ? `<p class="section-subtitle biryani-page-subtitle">${page.subtitle}</p>`
+    ? `<p class="section-subtitle page-subtitle">${page.subtitle}</p>`
     : "";
-  const { body, bodyClass } = renderBiryaniBody(page, ctx);
-
-  const chrome = `
-            ${pageHeader(r.name, ctx)}
-            <h2 class="biryani-page-title">${page.title || ""}</h2>
-            ${pageSubtitle}`;
-
   return `
         <div class="page" data-page="${page.id}">
           ${pageDecorations()}
           <div class="page-inner">
-            <div class="page-chrome">${chrome}</div>
-            <div class="page-body${bodyClass ? ` ${bodyClass}` : ""}">${body}</div>
+            <div class="page-chrome">
+              ${pageHeader(r.name, ctx)}
+              ${pageTitle}
+              ${pageSubtitle}
+            </div>
+            <div class="page-body ${pageBodyClass(page, ctx)}">${sections}</div>
           </div>
         </div>`;
 }
@@ -242,72 +215,44 @@ function renderBack(r, ctx) {
         </div>`;
 }
 
-function renderStandardPage(page, r, ctx) {
-  const cols = page.sections.map((section) => renderSection(section, page, ctx)).join("");
-  return `
-        <div class="page" data-page="${page.id}">
-          ${pageDecorations()}
-          <div class="page-inner">
-            <div class="page-chrome">${pageHeader(r.name, ctx)}</div>
-            <div class="page-body ${pageBodyClass(page, ctx)}">${cols}</div>
-          </div>
-        </div>`;
-}
-
-function renderMultiPage(page, r, ctx) {
-  const sections = page.sections.map((section) => renderSection(section, page, ctx)).join("");
-  return `
-        <div class="page" data-page="${page.id}">
-          ${pageDecorations()}
-          <div class="page-inner">
-            <div class="page-chrome">${pageHeader(r.name, ctx)}</div>
-            <div class="page-body ${pageBodyClass(page, ctx)}">${sections}</div>
-          </div>
-        </div>`;
-}
-
-function renderContentPage(page, r, ctx) {
-  if (page.type === "biryani") return renderBiryaniPage(page, r, ctx);
-  if (page.type === "multi") return renderMultiPage(page, r, ctx);
-  return renderStandardPage(page, r, ctx);
-}
-
 function isContentPage(page) {
   return page.type !== "cover" && page.type !== "back";
 }
 
-function renderMobileSectionBlock(page, ctx) {
+function renderMobileSectionBlock(page) {
   let html = "";
   if (page.title) {
-    html += `<h2 class="mobile-page-heading">${page.title}</h2>`;
+    const id = slugify(page.title);
+    html += `<h2 class="mobile-page-heading" id="${id}">${page.title}</h2>`;
     if (page.subtitle) {
-      html += `<p class="section-subtitle biryani-page-subtitle">${page.subtitle}</p>`;
+      html += `<p class="section-subtitle page-subtitle">${page.subtitle}</p>`;
     }
   }
-  const mobilePage = { ...page, type: "one-col", typeWithDescription: "one-col" };
   html += (page.sections || [])
-    .map((section) =>
-      renderSection(
-        {
-          ...section,
-          layout: "one-col",
-          layoutWithDescription: "one-col",
-          itemColumns: 1,
-        },
-        mobilePage,
-        ctx
-      )
-    )
+    .map((section) => renderSection(section, { id: "sec-" + slugify(section.title) }))
     .join("");
   return html;
 }
 
+function renderMobileNav(pages) {
+  const links = [];
+  for (const page of pages) {
+    for (const section of page.sections || []) {
+      const id = "sec-" + slugify(section.title);
+      links.push(`<a class="mobile-nav-link" href="#${id}">${section.title}</a>`);
+    }
+  }
+  return `<nav class="mobile-nav" aria-label="Menu sections">${links.join("")}</nav>`;
+}
+
 function renderMobileMenuPage(pages, ctx) {
-  const body = pages.map((page) => renderMobileSectionBlock(page, ctx)).join("");
+  const nav = renderMobileNav(pages);
+  const body = pages.map((page) => renderMobileSectionBlock(page)).join("");
   return `
         <div class="page page--mobile-menu" data-page="menu">
           ${pageDecorations()}
           <div class="page-inner">
+            ${nav}
             <div class="page-body mobile-sections-stack">${body}</div>
           </div>
         </div>`;
